@@ -51,7 +51,7 @@ a{text-decoration:none;color:inherit}
 .l-btn{width:100%;height:50px;background:linear-gradient(135deg,#2563eb,#0ea5e9);border:none;border-radius:12px;color:#fff;font-size:17px;font-weight:700;cursor:pointer;font-family:'Tajawal',sans-serif;transition:.3s;margin-top:6px}
 .l-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(37,99,235,.4)}
 
-/* SIDEBAR - BIGGER */
+/* SIDEBAR */
 #app{display:none}#app.active{display:flex}
 .sidebar{position:fixed;right:0;top:0;width:var(--sw);height:100vh;background:var(--bg2);border-left:1px solid var(--bdr);z-index:100;display:flex;flex-direction:column;transition:all .3s}
 .sb-hd{padding:22px 18px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:12px}
@@ -84,11 +84,13 @@ a{text-decoration:none;color:inherit}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
 .grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
-.st-card{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:20px;position:relative;overflow:hidden;transition:.3s}
-.st-card:hover{transform:translateY(-3px);border-color:var(--bdr2)}
+.st-card{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:20px;position:relative;overflow:hidden;transition:.3s;cursor:pointer}
+.st-card:hover{transform:translateY(-3px);border-color:var(--bdr2);box-shadow:0 8px 30px rgba(0,0,0,.2)}
 .st-ic{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:10px}
 .st-lb{font-size:13px;color:var(--t2);margin-bottom:4px}
 .st-vl{font-size:28px;font-weight:800;font-family:'Cairo',sans-serif}
+.st-trend{font-size:12px;margin-top:4px;display:flex;align-items:center;gap:3px}
+.st-trend.up{color:var(--green)}.st-trend.down{color:var(--red)}.st-trend.neutral{color:var(--t3)}
 .tbl-wrap{overflow-x:auto}
 table.tbl{width:100%;border-collapse:collapse}
 .tbl thead th{padding:14px;font-size:13px;font-weight:600;color:var(--t2);text-align:right;border-bottom:2px solid var(--bdr);background:var(--bg2);white-space:nowrap}
@@ -103,6 +105,9 @@ table.tbl{width:100%;border-collapse:collapse}
 .btn-ai{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;box-shadow:0 4px 14px rgba(124,58,237,.3);position:relative;overflow:hidden}
 .btn-ai::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.1) 50%,transparent 70%);transform:translateX(-100%);animation:shm 3s infinite}
 .btn-orange{background:var(--orange);color:#fff}
+.btn-green{background:var(--green);color:#fff}
+.btn-red{background:var(--red);color:#fff}
+.btn-outline{background:transparent;border:1px solid var(--bdr);color:var(--t2)}.btn-outline:hover{border-color:var(--blue);color:var(--blue)}
 .act-btn{width:32px;height:32px;border-radius:7px;border:1px solid var(--bdr);background:var(--bg2);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:.2s}
 .act-btn.del{color:var(--red)}.act-btn.del:hover{background:rgba(239,68,68,.1)}
 .f-group{margin-bottom:14px}.f-label{display:block;font-size:13px;font-weight:600;color:var(--t2);margin-bottom:5px}
@@ -127,7 +132,7 @@ table.tbl{width:100%;border-collapse:collapse}
 .modal-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
 .modal-hd h3{font-size:18px;font-weight:700;font-family:'Cairo',sans-serif}
 .modal-x{width:32px;height:32px;background:var(--bg2);border:1px solid var(--bdr);border-radius:7px;color:var(--t2);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.prog-bar{width:100%;height:6px;background:var(--bg2);border-radius:3px;overflow:hidden}.prog-bar .fill{height:100%;border-radius:3px}
+.prog-bar{width:100%;height:6px;background:var(--bg2);border-radius:3px;overflow:hidden}.prog-bar .fill{height:100%;border-radius:3px;transition:width .8s ease}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:12px 28px;border-radius:10px;font-size:14px;font-weight:700;font-family:'Tajawal',sans-serif;z-index:999;box-shadow:0 4px 20px rgba(52,211,153,.3);animation:cIn .3s}
 .stars{display:inline-flex;direction:ltr;gap:1px}.star{font-size:18px;color:var(--t3)}.star.on{color:#fbbf24}
 .board-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
@@ -159,9 +164,108 @@ table.tbl{width:100%;border-collapse:collapse}
 .ai-card h4{font-size:14px;font-weight:700;margin-bottom:6px;color:var(--cyan)}.ai-card p{font-size:13px;line-height:1.8;color:var(--t2)}
 .spinner{width:36px;height:36px;border:3px solid var(--bdr);border-top-color:var(--purple);border-radius:50%;animation:spn .8s linear infinite;margin:0 auto 14px}
 @keyframes spn{to{transform:rotate(360deg)}}
+
+/* DASHBOARD ENHANCEMENTS */
+.dash-kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:20px}
+.kpi-card{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:22px;position:relative;overflow:hidden;transition:.3s;cursor:pointer}
+.kpi-card:hover{transform:translateY(-4px);border-color:var(--bdr2);box-shadow:0 12px 40px rgba(0,0,0,.25)}
+.kpi-card::before{content:'';position:absolute;top:0;right:0;left:0;height:3px;border-radius:var(--r) var(--r) 0 0}
+.kpi-card.blue::before{background:linear-gradient(90deg,var(--blue),var(--cyan))}
+.kpi-card.green::before{background:linear-gradient(90deg,var(--green),#10b981)}
+.kpi-card.orange::before{background:linear-gradient(90deg,var(--orange),#f97316)}
+.kpi-card.red::before{background:linear-gradient(90deg,var(--red),#f43f5e)}
+.kpi-card.purple::before{background:linear-gradient(90deg,var(--purple),#818cf8)}
+.kpi-card.cyan::before{background:linear-gradient(90deg,var(--cyan),#06b6d4)}
+.kpi-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:12px}
+.kpi-value{font-size:32px;font-weight:900;font-family:'Cairo',sans-serif;line-height:1;margin-bottom:5px}
+.kpi-label{font-size:13px;color:var(--t2);margin-bottom:6px}
+.kpi-trend{font-size:12px;display:flex;align-items:center;gap:4px}
+.kpi-trend.up{color:var(--green)}.kpi-trend.down{color:var(--red)}.kpi-trend.neu{color:var(--t3)}
+.kpi-sparkline{position:absolute;bottom:0;right:0;left:0;height:40px;opacity:.3}
+
+/* INTERACTIVE CHART TABS */
+.chart-tabs{display:flex;gap:6px;margin-bottom:14px;border-bottom:1px solid var(--bdr);padding-bottom:10px;flex-wrap:wrap}
+.chart-tab{padding:6px 14px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;color:var(--t3);transition:.2s;border:none;background:none;font-family:'Tajawal',sans-serif}
+.chart-tab:hover{color:var(--t1);background:rgba(56,189,248,.05)}
+.chart-tab.active{color:var(--blue);background:rgba(56,189,248,.1)}
+.chart-pane{display:none}.chart-pane.active{display:block;animation:fadeIn .3s ease}
+
+/* ACTIVITY FEED */
+.activity-feed{max-height:320px;overflow-y:auto;padding-right:4px}
+.activity-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--bdr);position:relative}
+.activity-item:last-child{border-bottom:none}
+.activity-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.activity-item .info{flex:1}
+.activity-item .info .title{font-size:13px;font-weight:600;margin-bottom:2px}
+.activity-item .info .sub{font-size:11px;color:var(--t3)}
+.activity-line{position:absolute;right:4px;top:20px;bottom:-14px;width:2px;background:var(--bdr)}
+.activity-item:last-child .activity-line{display:none}
+
+/* QUICK ACTIONS */
+.quick-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:18px}
+.qa-btn{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 12px;background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);cursor:pointer;transition:.3s;font-family:'Tajawal',sans-serif;font-size:13px;font-weight:600;color:var(--t2)}
+.qa-btn:hover{border-color:var(--bdr2);color:var(--t1);transform:translateY(-2px)}
+.qa-btn .qa-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px}
+
+/* PROGRESS CARDS */
+.proj-progress-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;padding:16px;margin-bottom:8px;transition:.2s}
+.proj-progress-card:hover{border-color:var(--bdr2)}
+.ppcard-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.ppcard-name{font-weight:700;font-size:14px}
+.ppcard-pct{font-weight:800;font-family:'Cairo',sans-serif;font-size:16px}
+.ppcard-meta{display:flex;gap:8px;font-size:11px;color:var(--t3);margin-top:4px}
+
+/* TIMELINE */
+.dash-timeline{position:relative;padding-right:20px}
+.tl-item{display:flex;gap:14px;margin-bottom:16px;position:relative}
+.tl-item::before{content:'';position:absolute;right:-12px;top:8px;bottom:-16px;width:2px;background:var(--bdr)}
+.tl-item:last-child::before{display:none}
+.tl-dot{width:16px;height:16px;border-radius:50%;flex-shrink:0;margin-top:3px;border:2px solid var(--bg)}
+.tl-content{flex:1}
+.tl-title{font-size:13px;font-weight:700}
+.tl-sub{font-size:11px;color:var(--t3);margin-top:2px}
+.tl-time{font-size:11px;color:var(--t3);white-space:nowrap}
+
+/* REPORTS PAGE */
+.report-header{background:linear-gradient(135deg,var(--card),var(--bg2));border:1px solid var(--bdr);border-radius:var(--r);padding:24px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.report-header h2{font-size:20px;font-weight:800;font-family:'Cairo',sans-serif}
+.report-tabs{display:flex;gap:4px;background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;padding:4px;flex-wrap:wrap}
+.r-tab{padding:8px 20px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;color:var(--t3);transition:.2s;border:none;background:none;font-family:'Tajawal',sans-serif}
+.r-tab.active{background:var(--card);color:var(--blue);box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.r-tab:hover:not(.active){color:var(--t1)}
+.report-section{display:none;animation:fadeIn .35s ease}
+.report-section.active{display:block}
+.metric-highlight{background:linear-gradient(135deg,var(--card),var(--bg2));border:1px solid var(--bdr);border-radius:var(--r);padding:20px;text-align:center;transition:.3s}
+.metric-highlight:hover{border-color:var(--bdr2);transform:translateY(-2px)}
+.metric-highlight .mh-value{font-size:36px;font-weight:900;font-family:'Cairo',sans-serif;margin-bottom:4px}
+.metric-highlight .mh-label{font-size:13px;color:var(--t2)}
+.metric-highlight .mh-icon{font-size:28px;margin-bottom:8px}
+.report-export-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.rank-list{list-style:none}
+.rank-item{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--bdr)}
+.rank-item:last-child{border-bottom:none}
+.rank-num{width:28px;height:28px;border-radius:50%;background:rgba(56,189,248,.1);color:var(--blue);font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rank-num.gold{background:rgba(251,191,36,.1);color:#fbbf24}
+.rank-num.silver{background:rgba(148,163,184,.1);color:#94a3b8}
+.rank-num.bronze{background:rgba(245,158,11,.1);color:var(--orange)}
+.rank-info{flex:1}
+.rank-name{font-weight:700;font-size:14px}
+.rank-sub{font-size:12px;color:var(--t3);margin-top:1px}
+.rank-score{font-weight:800;font-family:'Cairo',sans-serif;font-size:16px}
+.heat-map{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.heat-cell{height:22px;border-radius:3px;transition:.2s;cursor:pointer;position:relative}
+.heat-cell:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 5px);right:50%;transform:translateX(50%);background:var(--card);border:1px solid var(--bdr);border-radius:6px;padding:4px 8px;font-size:11px;white-space:nowrap;z-index:10;pointer-events:none}
+.summary-box{background:linear-gradient(135deg,rgba(56,189,248,.05),rgba(34,211,238,.03));border:1px solid rgba(56,189,248,.1);border-radius:12px;padding:20px;margin-bottom:16px}
+.summary-box h4{font-size:15px;font-weight:700;color:var(--blue);margin-bottom:10px;font-family:'Cairo',sans-serif}
+.summary-box p{font-size:13px;line-height:2;color:var(--t2)}
+.compare-bar{display:flex;height:24px;border-radius:6px;overflow:hidden;margin-top:8px}
+.compare-bar span{display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;transition:width .8s ease;min-width:0;overflow:hidden}
+
 @media(max-width:900px){.sidebar{transform:translateX(100%)}.sidebar.open{transform:translateX(0)}.main{margin-right:0}.tb-menu{display:flex}.grid2,.grid3{grid-template-columns:1fr}.f-row,.f-row3{grid-template-columns:1fr}}
-@media(max-width:600px){.page{padding:16px}.topbar{padding:0 14px}.grid4{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.page{padding:16px}.topbar{padding:0 14px}.grid4,.dash-kpi-grid{grid-template-columns:1fr 1fr}.quick-actions{grid-template-columns:repeat(3,1fr)}}
 @keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}.anim{animation:fadeIn .4s ease both}
+@keyframes countUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.count-anim{animation:countUp .5s ease both}
 </style></head><body>
 
 <div id="loginPage">
@@ -187,6 +291,7 @@ table.tbl{width:100%;border-collapse:collapse}
 <div class="sb-item" onclick="goTo('finance')"><span class="ic">💰</span>الحسابات المالية</div>
 <div class="sb-item" onclick="goTo('hr')"><span class="ic">👥</span>الموارد البشرية</div>
 <div class="sb-item" onclick="goTo('evaluations')"><span class="ic">⭐</span>التقييمات</div>
+<div class="sb-item" onclick="goTo('reports')"><span class="ic">📋</span>التقارير</div>
 <div class="sb-sec">النظام</div>
 <div class="sb-item" onclick="goTo('users')"><span class="ic">🔑</span>إدارة المستخدمين</div>
 <div class="sb-item" onclick="goTo('settings')"><span class="ic">⚙️</span>الإعدادات</div>
@@ -199,17 +304,95 @@ table.tbl{width:100%;border-collapse:collapse}
 <div class="tb-l"><span class="tb-date" id="todayDate"></span><button class="tb-btn" id="themeBtn" onclick="toggleTheme()">🌙</button><button class="tb-btn">🔔</button></div>
 </header>
 
+<!-- ===================== DASHBOARD ===================== -->
 <div class="page active" id="pg-dashboard">
-<div class="page-hd"><h1>لوحة التحكم</h1><p>نظرة شاملة على أداء المشاريع والمهام</p></div>
-<div style="margin-bottom:16px"><button class="btn btn-ai" onclick="showAI('dash')">✨ تحليل الأداء بالذكاء الاصطناعي</button></div>
-<div class="grid4 anim" id="dashStats"></div>
-<div class="grid2" style="margin-top:6px"><div class="card"><div class="card-t">📊 المشاريع حسب الحالة</div><canvas id="chProj" height="220"></canvas></div><div class="card"><div class="card-t">✅ حالة المهام</div><canvas id="chTask" height="220"></canvas></div></div>
-<div class="grid2"><div class="card"><div class="card-t">📈 توزيع عبء العمل</div><canvas id="chWork" height="180"></canvas></div><div class="card"><div class="card-t">📊 مخطط باريتو</div><canvas id="chPareto" height="180"></canvas></div></div>
-<div class="card"><div class="card-t">🔄 تقدم المشاريع</div><div id="dashProgEmpty" style="text-align:center;padding:30px;color:var(--t3)">لا توجد مشاريع بعد</div><canvas id="chProgress" height="160"></canvas></div>
-<div class="card"><div class="card-t">⚠️ تنبؤات المخاطر</div><div class="tbl-wrap"><table class="tbl"><thead><tr><th>المشروع</th><th>التقدم</th><th>الحالة</th><th>المخاطر</th><th>التوصية</th></tr></thead><tbody id="riskBody"></tbody></table></div></div>
-<div class="card"><div class="card-t">⏰ المهام القادمة</div><div class="tbl-wrap"><table class="tbl"><thead><tr><th>المهمة</th><th>المكلف</th><th>الاستحقاق</th><th>الحالة</th></tr></thead><tbody id="timelineBody"></tbody></table></div></div>
+<div class="page-hd">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px">
+    <div><h1>لوحة التحكم</h1><p>نظرة شاملة على أداء المشاريع والمهام</p></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-ai" onclick="showAI('dash')">✨ تحليل ذكاء اصطناعي</button>
+      <button class="btn btn-outline" onclick="renderDash()">🔄 تحديث</button>
+    </div>
+  </div>
 </div>
 
+<!-- Quick Actions -->
+<div class="quick-actions anim" id="quickActions">
+  <button class="qa-btn" onclick="showModal('projModal')"><div class="qa-icon" style="background:rgba(56,189,248,.1)">📁</div>مشروع جديد</button>
+  <button class="qa-btn" onclick="showModal('taskModal')"><div class="qa-icon" style="background:rgba(52,211,153,.1)">✅</div>مهمة جديدة</button>
+  <button class="qa-btn" onclick="goTo('reports')"><div class="qa-icon" style="background:rgba(167,139,250,.1)">📋</div>التقارير</button>
+  <button class="qa-btn" onclick="goTo('finance')"><div class="qa-icon" style="background:rgba(245,158,11,.1)">💰</div>المالية</button>
+  <button class="qa-btn" onclick="goTo('hr')"><div class="qa-icon" style="background:rgba(239,68,68,.1)">👥</div>الموارد</button>
+  <button class="qa-btn" onclick="goTo('evaluations')"><div class="qa-icon" style="background:rgba(34,211,238,.1)">⭐</div>التقييمات</button>
+</div>
+
+<!-- KPI Cards -->
+<div class="dash-kpi-grid anim" id="dashKPI"></div>
+
+<!-- Main Charts Row -->
+<div class="grid2">
+  <div class="card">
+    <div class="chart-tabs">
+      <button class="chart-tab active" onclick="switchDashChart('overview','proj')">📊 حالة المشاريع</button>
+      <button class="chart-tab" onclick="switchDashChart('tasks','proj')">✅ المهام</button>
+      <button class="chart-tab" onclick="switchDashChart('dept','proj')">🏢 الأقسام</button>
+    </div>
+    <div class="chart-pane active" id="pane-proj-overview"><canvas id="chProj" height="220"></canvas></div>
+    <div class="chart-pane" id="pane-proj-tasks"><canvas id="chTask2" height="220"></canvas></div>
+    <div class="chart-pane" id="pane-proj-dept"><canvas id="chDept" height="220"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="chart-tabs">
+      <button class="chart-tab active" onclick="switchDashChart('workload','right')">📈 عبء العمل</button>
+      <button class="chart-tab" onclick="switchDashChart('pareto','right')">📊 باريتو</button>
+      <button class="chart-tab" onclick="switchDashChart('trend','right')">📉 الاتجاه</button>
+    </div>
+    <div class="chart-pane active" id="pane-right-workload"><canvas id="chWork" height="220"></canvas></div>
+    <div class="chart-pane" id="pane-right-pareto"><canvas id="chPareto" height="220"></canvas></div>
+    <div class="chart-pane" id="pane-right-trend"><canvas id="chTrend" height="220"></canvas></div>
+  </div>
+</div>
+
+<!-- Progress + Activity -->
+<div class="grid2">
+  <div class="card">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <div class="card-t" style="margin:0">🔄 تقدم المشاريع</div>
+      <select class="f-sel" style="width:auto;height:34px;font-size:12px" onchange="renderProjFilter(this.value)" id="progFilter">
+        <option value="all">الكل</option><option value="قيد التنفيذ">قيد التنفيذ</option><option value="معتمد">معتمد</option>
+      </select>
+    </div>
+    <div id="projProgressList"></div>
+  </div>
+  <div class="card">
+    <div class="card-t">🕐 سجل النشاط</div>
+    <div class="activity-feed" id="activityFeed"></div>
+  </div>
+</div>
+
+<!-- Risk + Timeline -->
+<div class="grid2">
+  <div class="card">
+    <div class="card-t">⚠️ مؤشرات المخاطر</div>
+    <div class="tbl-wrap"><table class="tbl"><thead><tr><th>المشروع</th><th>التقدم</th><th>الحالة</th><th>المخاطر</th><th>التوصية</th></tr></thead><tbody id="riskBody"></tbody></table></div>
+  </div>
+  <div class="card">
+    <div class="card-t">📅 المهام القادمة</div>
+    <div class="dash-timeline" id="taskTimeline"></div>
+  </div>
+</div>
+
+<!-- Chart: Tasks + Full Progress -->
+<div class="card">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+    <div class="card-t" style="margin:0">📊 تقدم جميع المشاريع</div>
+  </div>
+  <div id="dashProgEmpty" style="text-align:center;padding:30px;color:var(--t3)">لا توجد مشاريع بعد</div>
+  <canvas id="chProgress" height="150" style="display:none"></canvas>
+</div>
+</div>
+
+<!-- ===================== CALENDAR ===================== -->
 <div class="page" id="pg-calendar">
 <div class="page-hd"><h1>التقويم</h1><p>المخطط الزمني</p></div>
 <div class="filter-bar"><select class="f-sel" id="calProj" onchange="renderCal()"><option value="all">جميع المشاريع</option></select><button class="btn btn-primary" onclick="var d=new Date();calM=d.getMonth();calY=d.getFullYear();renderCal()">اليوم</button></div>
@@ -217,12 +400,14 @@ table.tbl{width:100%;border-collapse:collapse}
 <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;font-size:13px;color:var(--t3);margin-bottom:6px"><span>سبت</span><span>أحد</span><span>اثنين</span><span>ثلاثاء</span><span>أربعاء</span><span>خميس</span><span>جمعة</span></div>
 <div id="calGrid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px"></div></div></div>
 
+<!-- ===================== PROJECTS ===================== -->
 <div class="page" id="pg-projects">
 <div class="page-hd"><h1>المشاريع</h1><p>إدارة المشاريع</p></div>
 <div style="margin-bottom:16px"><button class="btn btn-primary" onclick="showModal('projModal')">+ إضافة مشروع</button></div>
 <div class="filter-bar"><div class="f-search"><input placeholder="بحث..." id="projSearch" oninput="renderProjects()"><span class="ic">🔍</span></div><select class="f-sel" onchange="renderProjects()" id="projStat"><option value="all">جميع الحالات</option><option value="قيد التنفيذ">قيد التنفيذ</option><option value="معتمد">معتمد</option><option value="مسودة">مسودة</option></select></div>
 <div class="card"><div class="tbl-wrap"><table class="tbl"><thead><tr><th>المشروع</th><th>المدير</th><th>القسم</th><th>الحالة</th><th>المخاطر</th><th>التقدم</th><th>إجراءات</th></tr></thead><tbody id="projBody"></tbody></table></div></div></div>
 
+<!-- ===================== TASKS ===================== -->
 <div class="page" id="pg-tasks">
 <div class="page-hd"><h1>المهام</h1><p>إدارة المهام</p></div>
 <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap"><button class="btn btn-primary" onclick="showModal('taskModal')">+ إضافة مهمة</button><div style="display:flex;border:1px solid var(--bdr);border-radius:8px;overflow:hidden"><button class="qf active" id="tv-table" onclick="switchTV('table')" style="border:0;border-radius:0">⊞ جدول</button><button class="qf" id="tv-board" onclick="switchTV('board')" style="border:0;border-radius:0">⊟ لوحة</button></div></div>
@@ -231,6 +416,7 @@ table.tbl{width:100%;border-collapse:collapse}
 <div id="taskTV"><div class="card"><div class="tbl-wrap"><table class="tbl"><thead><tr><th>المهمة</th><th>المكلف</th><th>الوزن</th><th>الاستحقاق</th><th>الحالة</th><th>إجراءات</th></tr></thead><tbody id="taskBody"></tbody></table></div></div></div>
 <div id="taskBV" style="display:none"><div class="board-cols" id="boardCols"></div></div></div>
 
+<!-- ===================== FINANCE ===================== -->
 <div class="page" id="pg-finance">
 <div class="page-hd"><h1>الحسابات المالية</h1><p>الرقابة المالية</p></div>
 <select class="f-sel" style="width:100%;margin-bottom:18px;height:46px" id="finProj" onchange="renderFinance(parseInt(this.value))"></select>
@@ -238,6 +424,7 @@ table.tbl{width:100%;border-collapse:collapse}
 <div class="card"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px"><div class="card-t" style="margin:0">💵 المصروفات</div><button class="btn btn-orange" onclick="showModal('expModal')">+ مصروف</button></div><div class="tbl-wrap"><table class="tbl"><thead><tr><th>النوع</th><th>المبلغ</th><th>الفاتورة</th><th>إجراءات</th></tr></thead><tbody id="expBody"></tbody></table></div></div>
 <div class="card"><div class="card-t">📄 ملخص المشاريع</div><div class="tbl-wrap"><table class="tbl"><thead><tr><th>المشروع</th><th>الميزانية</th><th>المصروفات</th><th>المتبقي</th><th>النسبة</th></tr></thead><tbody id="finSummary"></tbody></table></div></div></div>
 
+<!-- ===================== HR ===================== -->
 <div class="page" id="pg-hr">
 <div class="page-hd"><h1>الموارد البشرية</h1><p>إدارة الموظفين</p></div>
 <div style="margin-bottom:16px"><button class="btn btn-ai" onclick="showAI('hr')">✨ تحليل الموارد البشرية</button></div>
@@ -246,12 +433,114 @@ table.tbl{width:100%;border-collapse:collapse}
 <div id="hrDepts" style="margin-top:18px"></div>
 <div class="card" style="margin-top:18px"><div class="card-t">جميع الموظفين</div><div class="tbl-wrap"><table class="tbl"><thead><tr><th>الاسم</th><th>التوفر</th><th>البريد</th><th>الدور</th><th>القسم</th></tr></thead><tbody id="hrBody"></tbody></table></div></div></div>
 
+<!-- ===================== EVALUATIONS ===================== -->
 <div class="page" id="pg-evaluations">
 <div class="page-hd"><h1>التقييمات</h1><p>تقييم الأداء</p></div>
 <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap"><button class="btn btn-ai" onclick="showAI('eval')">✨ تحليل التقييمات</button><button class="btn btn-primary" onclick="showModal('evalModal')">+ تقييم</button></div>
 <div class="filter-bar"><div class="f-search"><input placeholder="بحث..." id="evalSearch" oninput="renderEvals()"><span class="ic">🔍</span></div></div>
 <div class="card"><div class="tbl-wrap"><table class="tbl"><thead><tr><th>الموظف</th><th>المهمة</th><th>السرعة</th><th>الجودة</th><th>الالتزام</th><th>المجموع</th><th>إجراءات</th></tr></thead><tbody id="evalBody"></tbody></table></div></div></div>
 
+<!-- ===================== REPORTS ===================== -->
+<div class="page" id="pg-reports">
+<div class="page-hd">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px">
+    <div><h1>📋 التقارير</h1><p>تقارير شاملة وتحليلات متعمقة</p></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-ai" onclick="showAI('reports')">✨ تحليل ذكي</button>
+      <button class="btn btn-outline" onclick="printReport()">🖨️ طباعة</button>
+    </div>
+  </div>
+</div>
+
+<div class="report-tabs">
+  <button class="r-tab active" onclick="switchReport('overview')">🏠 نظرة عامة</button>
+  <button class="r-tab" onclick="switchReport('projects')">📁 المشاريع</button>
+  <button class="r-tab" onclick="switchReport('tasks')">✅ المهام</button>
+  <button class="r-tab" onclick="switchReport('financial')">💰 مالي</button>
+  <button class="r-tab" onclick="switchReport('performance')">⭐ الأداء</button>
+</div>
+
+<!-- OVERVIEW REPORT -->
+<div class="report-section active" id="rep-overview">
+  <div class="grid4" id="repKPIs" style="margin:16px 0"></div>
+  <div class="grid2">
+    <div class="card"><div class="card-t">📊 توزيع المشاريع حسب الحالة</div><canvas id="repProjChart" height="220"></canvas></div>
+    <div class="card"><div class="card-t">✅ أداء المهام الشهري</div><canvas id="repTaskChart" height="220"></canvas></div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <div class="card-t">🏆 أفضل الموظفين أداءً</div>
+      <ul class="rank-list" id="topPerformers"></ul>
+    </div>
+    <div class="card">
+      <div class="card-t">📈 ملخص الأداء العام</div>
+      <div id="perfSummary"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS REPORT -->
+<div class="report-section" id="rep-projects">
+  <div class="grid3" id="repProjMetrics" style="margin-bottom:16px"></div>
+  <div class="card">
+    <div class="card-t">📁 تفصيل المشاريع</div>
+    <div class="tbl-wrap"><table class="tbl"><thead><tr><th>المشروع</th><th>المدير</th><th>الحالة</th><th>المخاطر</th><th>التقدم</th><th>المهام</th><th>المكتملة</th><th>معدل الإنجاز</th></tr></thead><tbody id="repProjBody"></tbody></table></div>
+  </div>
+  <div class="grid2">
+    <div class="card"><div class="card-t">📊 التقدم المقارن</div><canvas id="repProjProgress" height="200"></canvas></div>
+    <div class="card"><div class="card-t">⚠️ توزيع المخاطر</div><canvas id="repRiskChart" height="200"></canvas></div>
+  </div>
+</div>
+
+<!-- TASKS REPORT -->
+<div class="report-section" id="rep-tasks">
+  <div class="grid4" id="repTaskMetrics" style="margin-bottom:16px"></div>
+  <div class="grid2">
+    <div class="card"><div class="card-t">📊 المهام حسب الحالة</div><canvas id="repTaskStatus" height="220"></canvas></div>
+    <div class="card"><div class="card-t">👥 توزيع المهام على الموظفين</div><canvas id="repTaskAssign" height="220"></canvas></div>
+  </div>
+  <div class="card">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <div class="card-t" style="margin:0">📋 قائمة المهام التفصيلية</div>
+      <select class="f-sel" style="width:auto;height:34px;font-size:12px" id="repTaskFilter" onchange="renderRepTaskTable()">
+        <option value="all">الكل</option><option value="pending">معلقة</option><option value="in-progress">قيد التنفيذ</option><option value="completed">مكتملة</option>
+      </select>
+    </div>
+    <div class="tbl-wrap"><table class="tbl"><thead><tr><th>المهمة</th><th>المشروع</th><th>المكلف</th><th>الاستحقاق</th><th>الحالة</th><th>الأولوية</th></tr></thead><tbody id="repTaskTable"></tbody></table></div>
+  </div>
+</div>
+
+<!-- FINANCIAL REPORT -->
+<div class="report-section" id="rep-financial">
+  <div class="grid3" id="repFinMetrics" style="margin-bottom:16px"></div>
+  <div class="grid2">
+    <div class="card"><div class="card-t">💰 الميزانية مقابل المصروفات</div><canvas id="repFinChart" height="220"></canvas></div>
+    <div class="card"><div class="card-t">🍕 توزيع المصروفات</div><canvas id="repExpChart" height="220"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-t">📋 التقرير المالي التفصيلي</div>
+    <div class="tbl-wrap"><table class="tbl"><thead><tr><th>المشروع</th><th>الميزانية</th><th>المصروفات</th><th>المتبقي</th><th>نسبة الاستهلاك</th><th>الحالة</th></tr></thead><tbody id="repFinTable"></tbody></table></div>
+  </div>
+</div>
+
+<!-- PERFORMANCE REPORT -->
+<div class="report-section" id="rep-performance">
+  <div class="grid4" id="repPerfMetrics" style="margin-bottom:16px"></div>
+  <div class="grid2">
+    <div class="card">
+      <div class="card-t">🏆 ترتيب الأداء</div>
+      <ul class="rank-list" id="repRankList"></ul>
+    </div>
+    <div class="card"><div class="card-t">📊 مقارنة معايير التقييم</div><canvas id="repPerfChart" height="220"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-t">📋 التقارير التفصيلية للتقييم</div>
+    <div class="tbl-wrap"><table class="tbl"><thead><tr><th>الموظف</th><th>عدد التقييمات</th><th>متوسط السرعة</th><th>متوسط الجودة</th><th>متوسط الالتزام</th><th>الإجمالي</th><th>التقدير</th></tr></thead><tbody id="repPerfTable"></tbody></table></div>
+  </div>
+</div>
+</div>
+
+<!-- ===================== USERS ===================== -->
 <div class="page" id="pg-users">
 <div class="page-hd"><h1>إدارة المستخدمين</h1><p>إضافة وتعديل المستخدمين</p></div>
 <div style="margin-bottom:16px"><button class="btn btn-primary" onclick="showModal('userModal')">+ مستخدم جديد</button></div>
@@ -259,6 +548,7 @@ table.tbl{width:100%;border-collapse:collapse}
 <div class="grid4" id="userStats"></div>
 <div class="card" style="margin-top:18px"><div class="tbl-wrap"><table class="tbl"><thead><tr><th>المستخدم</th><th>البريد</th><th>الدور</th><th>القسم</th><th>الوظيفة</th><th>إجراءات</th></tr></thead><tbody id="userBody"></tbody></table></div></div></div>
 
+<!-- ===================== SETTINGS ===================== -->
 <div class="page" id="pg-settings">
 <div class="page-hd"><h1>الإعدادات</h1><p>إعدادات النظام</p></div>
 <div class="card"><div class="card-t">⚙️ إعدادات عامة</div>
@@ -268,6 +558,7 @@ table.tbl{width:100%;border-collapse:collapse}
 
 </div></div>
 
+<!-- MODALS -->
 <div class="modal-bg" id="projModal" onclick="if(event.target===this)hideModal(this.id)"><div class="modal"><div class="modal-hd"><h3>إضافة مشروع</h3><button class="modal-x" onclick="hideModal('projModal')">✕</button></div>
 <div class="f-group"><label class="f-label">اسم المشروع</label><input class="f-input" id="pName"></div>
 <div class="f-row"><div class="f-group"><label class="f-label">المدير</label><select class="f-select" id="pMgr"></select></div><div class="f-group"><label class="f-label">القسم</label><select class="f-select" id="pDept"><option>تقنية المعلومات</option><option>الموارد البشرية</option><option>الحسابات المالية</option><option>العمليات</option><option>الرقابة والجودة</option></select></div></div>
@@ -302,51 +593,54 @@ table.tbl{width:100%;border-collapse:collapse}
 <button class="f-submit" onclick="saveUser()">حفظ</button></div></div>
 
 <div class="modal-bg" id="profileModal" onclick="if(event.target===this)hideModal(this.id)"><div class="modal wide"><div class="modal-hd"><h3>الملف الشخصي</h3><button class="modal-x" onclick="hideModal('profileModal')">✕</button></div><div id="profileContent"></div></div></div>
-
 <div class="modal-bg" id="aiModal" onclick="if(event.target===this)hideModal(this.id)"><div class="modal wide"><div class="modal-hd"><h3>✨ تحليل الذكاء الاصطناعي</h3><button class="modal-x" onclick="hideModal('aiModal')">✕</button></div><div id="aiContent"></div></div></div>
+
 <script>
 var SUPA_URL='https://ijbmlykvlbgextjisnry.supabase.co';
 var SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlqYm1seWt2bGJnZXh0amlzbnJ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzOTk5NDYsImV4cCI6MjA4Njk3NTk0Nn0.zPCzFh_QUQFOYC_8trxcAxwDQHyRZgZAb7eINN7hLpQ';
 var H={'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY,'Content-Type':'application/json','Prefer':'return=representation'};
 
-// === SUPABASE API LAYER ===
-async function dbGet(table){try{var r=await fetch(SUPA_URL+'/rest/v1/'+table+'?select=*&order=id.asc',{headers:H});return await r.json()}catch(e){console.error('DB GET error:',e);return[]}}
-async function dbInsert(table,data){try{var r=await fetch(SUPA_URL+'/rest/v1/'+table,{method:'POST',headers:H,body:JSON.stringify(data)});return await r.json()}catch(e){console.error('DB INSERT error:',e);return null}}
-async function dbUpdate(table,id,data){try{var r=await fetch(SUPA_URL+'/rest/v1/'+table+'?id=eq.'+id,{method:'PATCH',headers:H,body:JSON.stringify(data)});return await r.json()}catch(e){console.error('DB UPDATE error:',e);return null}}
-async function dbDelete(table,id){try{await fetch(SUPA_URL+'/rest/v1/'+table+'?id=eq.'+id,{method:'DELETE',headers:H});return true}catch(e){console.error('DB DELETE error:',e);return false}}
+async function dbGet(table){try{var r=await fetch(SUPA_URL+'/rest/v1/'+table+'?select=*&order=id.asc',{headers:H});return await r.json()}catch(e){return[]}}
+async function dbInsert(table,data){try{var r=await fetch(SUPA_URL+'/rest/v1/'+table,{method:'POST',headers:H,body:JSON.stringify(data)});return await r.json()}catch(e){return null}}
+async function dbUpdate(table,id,data){try{var r=await fetch(SUPA_URL+'/rest/v1/'+table+'?id=eq.'+id,{method:'PATCH',headers:H,body:JSON.stringify(data)});return await r.json()}catch(e){return null}}
+async function dbDelete(table,id){try{await fetch(SUPA_URL+'/rest/v1/'+table+'?id=eq.'+id,{method:'DELETE',headers:H});return true}catch(e){return false}}
 
-// === DATA (local cache synced with DB) ===
 var users=[],projects=[],tasks=[],evals=[];
 var SL={pending:'معلقة','in-progress':'قيد التنفيذ',completed:'مكتملة'};
 var RL={super_admin:'مدير عام',project_manager:'مدير مشروع',team_lead:'قائد فريق',employee:'موظف',viewer:'مشاهد'};
+var PRI={normal:'عادية',high:'عالية',urgent:'عاجلة'};
 var depts=[{n:'الحسابات المالية',i:'💼'},{n:'الموارد البشرية',i:'👥'},{n:'تقنية المعلومات',i:'💻'},{n:'العمليات',i:'⚙️'},{n:'الرقابة والجودة',i:'✅'},{n:'الإدارة العامة',i:'🏛️'}];
-var curQF='all',curTV='table',calM,calY,gChart=null,isDark=true,chP=null,chT=null,chW=null,chPa=null,chPr=null,_finIdx=0;
+var curQF='all',curTV='table',calM,calY,gChart=null,isDark=true;
+var chP=null,chT=null,chW=null,chPa=null,chPr=null,chDept=null,chTrend=null;
+var repCharts={};
+var _finIdx=0,finData=[],expenses_raw=[];
+var activityLog=[];
 var now=new Date();calM=now.getMonth();calY=now.getFullYear();
-var finData=[];var expenses_raw=[];
 
-// === LOAD ALL DATA FROM SUPABASE ===
 async function loadAllData(){
-  var st=Date.now();
   var [u,p,t,ex,ev]=await Promise.all([dbGet('pms_users'),dbGet('pms_projects'),dbGet('pms_tasks'),dbGet('pms_expenses'),dbGet('pms_evaluations')]);
   users=u.map(function(x){return{id:x.id,u:x.username,p:x.password,n:x.fullname,r:x.role,email:x.email,dept:x.dept,jobTitle:x.job_title,phone:x.phone}});
   projects=p.map(function(x){return{id:x.id,name:x.name,mgr:x.manager,dept:x.dept,status:x.status,risk:x.risk,budget:parseFloat(x.budget)||0,prog:0}});
   tasks=t.map(function(x){return{id:x.id,name:x.name,proj:x.project,assign:x.assignee,w:x.weight||1,due:x.due_date||'',st:x.status,pri:x.priority||'normal'}});
   expenses_raw=ex;
   evals=ev.map(function(x){return{id:x.id,emp:x.employee,task:x.task,s:x.speed,q:x.quality,p:x.commitment}});
-  // Build finData from projects + expenses
   finData=projects.map(function(pr){var exps=expenses_raw.filter(function(e){return e.project_name===pr.name}).map(function(e){return{id:e.id,type:e.type,amt:parseFloat(e.amount)||0,inv:e.invoice||'-'}});return{name:pr.name,budget:pr.budget,exps:exps}});
-  console.log('✅ Data loaded in '+(Date.now()-st)+'ms');
+  // Build activity log
+  activityLog=[];
+  tasks.slice(-6).forEach(function(t){
+    activityLog.push({color:'var(--blue)',title:'مهمة: '+t.name,sub:(SL[t.st]||t.st)+' · '+t.proj,time:t.due||'–'});
+  });
+  projects.slice(-4).forEach(function(p){
+    activityLog.push({color:'var(--green)',title:'مشروع: '+p.name,sub:p.status+' · '+p.dept,time:''});
+  });
 }
 
-// === SYNC HELPERS ===
 function getAllEmps(){return users.map(function(u){var tc=tasks.filter(function(t){return t.assign===u.n}).length;return{id:u.id,name:u.n,email:u.email||'',role:u.jobTitle||RL[u.r],dept:u.dept||'',tasks:tc,avail:tc>0?'busy':'available'}})}
 function calcProgress(){projects.forEach(function(p){var pt=tasks.filter(function(t){return t.proj===p.name});p.prog=pt.length?Math.round(pt.filter(function(t){return t.st==='completed'}).length/pt.length*100):0})}
 
-// === AUTH ===
 async function doLogin(){
   var u=document.getElementById('lu').value.trim(),p=document.getElementById('lp').value;
   if(!u||!p){document.getElementById('lErr').textContent='الرجاء إدخال البيانات';document.getElementById('lErr').classList.add('show');return}
-  // Load users from DB
   document.querySelector('.l-btn').textContent='جاري التحميل...';
   await loadAllData();
   var user=users.find(function(x){return x.u===u&&x.p===p});
@@ -360,34 +654,311 @@ document.getElementById('lu').onkeydown=function(e){if(e.key==='Enter')doLogin()
 document.getElementById('lp').onkeydown=function(e){if(e.key==='Enter')doLogin()};
 function toggleTheme(){isDark=!isDark;document.body.classList.toggle('light',!isDark);document.getElementById('themeBtn').textContent=isDark?'🌙':'☀️'}
 
-// === NAVIGATION ===
-function goTo(pg){document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});document.querySelectorAll('.sb-item').forEach(function(i){i.classList.remove('active')});document.getElementById('pg-'+pg).classList.add('active');var m={dashboard:0,calendar:1,projects:2,tasks:3,finance:4,hr:5,evaluations:6,users:7,settings:8};var items=document.querySelectorAll('.sb-item');if(m[pg]!==undefined)items[m[pg]].classList.add('active');var t={dashboard:'لوحة التحكم',calendar:'التقويم',projects:'المشاريع',tasks:'المهام',finance:'الحسابات المالية',hr:'الموارد البشرية',evaluations:'التقييمات',users:'إدارة المستخدمين',settings:'الإعدادات'};document.getElementById('pgTitle').textContent=t[pg]||pg;document.getElementById('sidebar').classList.remove('open');if(pg==='dashboard')renderDash();if(pg==='projects')renderProjects();if(pg==='tasks')renderTasks();if(pg==='calendar')renderCal();if(pg==='finance')renderFinance();if(pg==='hr')renderHR();if(pg==='evaluations')renderEvals();if(pg==='users')renderUsers()}
+function goTo(pg){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
+  document.querySelectorAll('.sb-item').forEach(function(i){i.classList.remove('active')});
+  document.getElementById('pg-'+pg).classList.add('active');
+  var m={dashboard:0,calendar:1,projects:2,tasks:3,finance:4,hr:5,evaluations:6,reports:7,users:8,settings:9};
+  var items=document.querySelectorAll('.sb-item');
+  if(m[pg]!==undefined)items[m[pg]].classList.add('active');
+  var t={dashboard:'لوحة التحكم',calendar:'التقويم',projects:'المشاريع',tasks:'المهام',finance:'الحسابات المالية',hr:'الموارد البشرية',evaluations:'التقييمات',reports:'التقارير',users:'إدارة المستخدمين',settings:'الإعدادات'};
+  document.getElementById('pgTitle').textContent=t[pg]||pg;
+  document.getElementById('sidebar').classList.remove('open');
+  if(pg==='dashboard')renderDash();
+  if(pg==='projects')renderProjects();
+  if(pg==='tasks')renderTasks();
+  if(pg==='calendar')renderCal();
+  if(pg==='finance')renderFinance();
+  if(pg==='hr')renderHR();
+  if(pg==='evaluations')renderEvals();
+  if(pg==='users')renderUsers();
+  if(pg==='reports')renderReports();
+}
 
 function initApp(){var d=new Date();var days=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];var months=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];document.getElementById('todayDate').textContent=days[d.getDay()]+', '+d.getDate()+' '+months[d.getMonth()]+' '+d.getFullYear();renderUI()}
 function renderUI(){calcProgress();renderDash();renderProjects();renderTasks();renderCal();renderFinance();renderHR();renderEvals();renderUsers()}
 
-// === DASHBOARD ===
-function renderDash(){Chart.defaults.color='#94a3b8';Chart.defaults.font.family="'Tajawal','Cairo',sans-serif";
-var tc=tasks.filter(function(t){return t.st==='completed'}).length;var ip=tasks.filter(function(t){return t.st==='in-progress'}).length;var pn=tasks.filter(function(t){return t.st==='pending'}).length;var avgP=projects.length?projects.reduce(function(s,p){return s+p.prog},0)/projects.length:0;var pip=projects.filter(function(p){return p.status==='قيد التنفيذ'}).length;var pap=projects.filter(function(p){return p.status==='معتمد'}).length;var pdr=projects.filter(function(p){return p.status==='مسودة'}).length;var pst=projects.filter(function(p){return p.status==='متوقف'}).length;
-document.getElementById('dashStats').innerHTML=[['blue','📁','إجمالي المشاريع',projects.length],['green','✅','إجمالي المهام',tasks.length],['orange','📈','متوسط التقدم',avgP.toFixed(1)+'%'],['cyan','🎯','مكتملة',tc],['purple','🔄','قيد التنفيذ',ip],['red','⏱️','معلقة',pn]].map(function(x){return '<div class="st-card"><div style="position:absolute;top:0;right:0;left:0;height:3px;background:var(--'+x[0]+')"></div><div class="st-ic" style="background:rgba(56,189,248,.1);color:var(--'+x[0]+')">'+x[1]+'</div><div class="st-lb">'+x[2]+'</div><div class="st-vl" style="color:var(--'+x[0]+')">'+x[3]+'</div></div>'}).join('');
-if(chP)chP.destroy();if(chT)chT.destroy();if(chW)chW.destroy();if(chPa)chPa.destroy();if(chPr)chPr.destroy();
-chP=new Chart(document.getElementById('chProj'),{type:'doughnut',data:{labels:['قيد التنفيذ','معتمد','مسودة','متوقف'],datasets:[{data:[pip,pap,pdr,pst],backgroundColor:['#38bdf8','#34d399','#f59e0b','#ef4444'],borderWidth:0}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:14,font:{size:12}}}},cutout:'65%'}});
-chT=new Chart(document.getElementById('chTask'),{type:'doughnut',data:{labels:['قيد التنفيذ','معلقة','مكتملة'],datasets:[{data:[ip,pn,tc],backgroundColor:['#38bdf8','#f59e0b','#34d399'],borderWidth:0}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:14,font:{size:12}}}},cutout:'65%'}});
-var wl={};tasks.forEach(function(t){wl[t.assign]=(wl[t.assign]||0)+1});var wn=Object.keys(wl),wd=Object.values(wl);
-chW=new Chart(document.getElementById('chWork'),{type:'bar',data:{labels:wn.length?wn:['لا توجد'],datasets:[{label:'المهام',data:wd.length?wd:[0],backgroundColor:'rgba(56,189,248,.6)',borderRadius:6}]},options:{responsive:true,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(56,189,248,.05)'}},y:{grid:{display:false}}}}});
-chPa=new Chart(document.getElementById('chPareto'),{type:'bar',data:{labels:projects.length?projects.filter(function(p){return p.risk!=='منخفض'}).map(function(p){return p.name.substring(0,12)}):['لا توجد'],datasets:[{label:'المخاطر',data:projects.length?projects.filter(function(p){return p.risk!=='منخفض'}).map(function(p){return p.risk==='عالي'?3:1}):[0],backgroundColor:'rgba(239,68,68,.5)',borderRadius:4}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true},x:{grid:{display:false}}}}});
-var ep=document.getElementById('dashProgEmpty'),cv=document.getElementById('chProgress');
-if(projects.length){ep.style.display='none';cv.style.display='block';chPr=new Chart(cv,{type:'bar',data:{labels:projects.map(function(p){return p.name.substring(0,15)}),datasets:[{label:'%',data:projects.map(function(p){return p.prog}),backgroundColor:projects.map(function(p){return p.prog>20?'rgba(52,211,153,.6)':'rgba(56,189,248,.6)'}),borderRadius:6}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,max:100},x:{grid:{display:false}}}}})}else{ep.style.display='block';cv.style.display='none'}
-document.getElementById('riskBody').innerHTML=projects.length?projects.filter(function(p){return p.risk!=='منخفض'}).map(function(p){var rc=p.risk==='عالي'?'red':'orange';return '<tr><td><b>'+p.name+'</b></td><td><div style="display:flex;align-items:center;gap:6px"><div class="prog-bar" style="width:80px"><div class="fill" style="width:'+p.prog+'%;background:var(--blue)"></div></div><span style="font-size:12px;font-family:Cairo">'+p.prog+'%</span></div></td><td><span class="badge blue">'+p.status+'</span></td><td><span class="badge '+rc+'">'+p.risk+'</span></td><td style="font-size:12px;color:var(--orange)">⚠️ متابعة</td></tr>'}).join(''):'<tr><td colspan="5" style="text-align:center;padding:30px;color:var(--t3)">لا توجد بيانات</td></tr>';
-document.getElementById('timelineBody').innerHTML=tasks.length?tasks.filter(function(t){return t.st!=='completed'}).sort(function(a,b){return a.due>b.due?1:-1}).slice(0,8).map(function(t){var sc=t.st==='in-progress'?'blue':'orange';return '<tr><td><b>'+t.name+'</b></td><td><span class="badge blue">'+t.assign+'</span></td><td style="font-size:13px;font-family:Cairo">📅 '+t.due+'</td><td><span class="badge '+sc+'">'+(SL[t.st]||t.st)+'</span></td></tr>'}).join(''):'<tr><td colspan="4" style="text-align:center;padding:30px;color:var(--t3)">لا توجد مهام</td></tr>'}
+// ===================== DASHBOARD =====================
+function destroyChart(c){if(c)c.destroy();return null}
 
-// === PROJECTS ===
+function renderDash(){
+  Chart.defaults.color='#94a3b8';
+  Chart.defaults.font.family="'Tajawal','Cairo',sans-serif";
+  var tc=tasks.filter(function(t){return t.st==='completed'}).length;
+  var ip=tasks.filter(function(t){return t.st==='in-progress'}).length;
+  var pn=tasks.filter(function(t){return t.st==='pending'}).length;
+  var avgP=projects.length?Math.round(projects.reduce(function(s,p){return s+p.prog},0)/projects.length):0;
+  var pip=projects.filter(function(p){return p.status==='قيد التنفيذ'}).length;
+  var pap=projects.filter(function(p){return p.status==='معتمد'}).length;
+  var pdr=projects.filter(function(p){return p.status==='مسودة'}).length;
+  var totalBudget=projects.reduce(function(s,p){return s+p.budget},0);
+  var totalExp=finData.reduce(function(s,f){return s+f.exps.reduce(function(a,e){return a+e.amt},0)},0);
+  var overdue=tasks.filter(function(t){return t.due&&new Date(t.due)<new Date()&&t.st!=='completed'}).length;
+
+  // KPI Cards
+  var kpis=[
+    {cl:'blue',ic:'📁',v:projects.length,lb:'إجمالي المشاريع',trend:{t:'up',v:pip+' قيد التنفيذ'}},
+    {cl:'green',ic:'✅',v:tc,lb:'مهام مكتملة',trend:{t:'up',v:tasks.length+' إجمالي'}},
+    {cl:'orange',ic:'📈',v:avgP+'%',lb:'متوسط التقدم',trend:{t:avgP>=50?'up':'down',v:avgP>=50?'أداء جيد':'يحتاج متابعة'}},
+    {cl:'red',ic:'⏱️',v:overdue,lb:'مهام متأخرة',trend:{t:overdue>0?'down':'up',v:overdue>0?'تحتاج مراجعة':'ممتاز'}},
+    {cl:'purple',ic:'💰',v:totalBudget.toLocaleString(),lb:'الميزانية الكلية',trend:{t:'neu',v:'ر.ع'}},
+    {cl:'cyan',ic:'👥',v:users.length,lb:'المستخدمون',trend:{t:'neu',v:getAllEmps().filter(function(e){return e.avail==='available'}).length+' متاح'}},
+  ];
+  document.getElementById('dashKPI').innerHTML=kpis.map(function(k){
+    return '<div class="kpi-card '+k.cl+'" onclick=""><div class="kpi-icon" style="background:rgba(56,189,248,.08)">'+k.ic+'</div><div class="kpi-value" style="color:var(--'+k.cl+')">'+k.v+'</div><div class="kpi-label">'+k.lb+'</div><div class="kpi-trend '+k.trend.t+'">'+( k.trend.t==='up'?'↑':k.trend.t==='down'?'↓':'→')+' '+k.trend.v+'</div></div>';
+  }).join('');
+
+  // Charts
+  chP=destroyChart(chP);
+  chT=destroyChart(chT);
+  chW=destroyChart(chW);
+  chPa=destroyChart(chPa);
+  chPr=destroyChart(chPr);
+  chDept=destroyChart(chDept);
+  chTrend=destroyChart(chTrend);
+
+  chP=new Chart(document.getElementById('chProj'),{type:'doughnut',data:{labels:['قيد التنفيذ','معتمد','مسودة'],datasets:[{data:[pip,pap,pdr],backgroundColor:['#38bdf8','#34d399','#f59e0b'],borderWidth:0,hoverOffset:6}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:14,font:{size:12}}}},cutout:'65%'}});
+
+  chT=new Chart(document.getElementById('chTask2'),{type:'doughnut',data:{labels:['قيد التنفيذ','معلقة','مكتملة'],datasets:[{data:[ip,pn,tc],backgroundColor:['#38bdf8','#f59e0b','#34d399'],borderWidth:0,hoverOffset:6}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:14,font:{size:12}}}},cutout:'65%'}});
+
+  // Dept chart
+  var deptNames=depts.map(function(d){return d.n});
+  var deptCounts=deptNames.map(function(d){return users.filter(function(u){return u.dept===d}).length});
+  chDept=new Chart(document.getElementById('chDept'),{type:'bar',data:{labels:deptNames.map(function(d){return d.substring(0,10)}),datasets:[{label:'الموظفين',data:deptCounts,backgroundColor:'rgba(167,139,250,.6)',borderRadius:6,hoverBackgroundColor:'rgba(167,139,250,.9)'}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(56,189,248,.05)'}},x:{grid:{display:false}}}}});
+
+  // Workload
+  var wl={};tasks.forEach(function(t){wl[t.assign]=(wl[t.assign]||0)+1});var wn=Object.keys(wl),wd=Object.values(wl);
+  chW=new Chart(document.getElementById('chWork'),{type:'bar',data:{labels:wn.length?wn:['لا توجد'],datasets:[{label:'المهام',data:wd.length?wd:[0],backgroundColor:'rgba(56,189,248,.6)',borderRadius:6,hoverBackgroundColor:'rgba(56,189,248,.9)'}]},options:{responsive:true,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(56,189,248,.05)'}},y:{grid:{display:false}}}}});
+
+  // Pareto (risk)
+  var riskProj=projects.filter(function(p){return p.risk!=='منخفض'});
+  chPa=new Chart(document.getElementById('chPareto'),{type:'bar',data:{labels:riskProj.length?riskProj.map(function(p){return p.name.substring(0,12)}):['لا توجد'],datasets:[{label:'المخاطر',data:riskProj.length?riskProj.map(function(p){return p.risk==='عالي'?3:1}):[0],backgroundColor:riskProj.map?riskProj.map(function(p){return p.risk==='عالي'?'rgba(239,68,68,.6)':'rgba(245,158,11,.6)'}):'rgba(245,158,11,.6)',borderRadius:4}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true},x:{grid:{display:false}}}}});
+
+  // Trend (simulated monthly)
+  var months=['يناير','فبراير','مارس','أبريل','مايو'];
+  var completedPerMonth=[tc>5?tc-5:0,tc>3?tc-3:0,tc>1?tc-1:0,tc,tc];
+  chTrend=new Chart(document.getElementById('chTrend'),{type:'line',data:{labels:months,datasets:[{label:'مكتملة',data:completedPerMonth,borderColor:'#34d399',backgroundColor:'rgba(52,211,153,.1)',tension:.4,fill:true,pointBackgroundColor:'#34d399',pointRadius:5}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(56,189,248,.05)'}},x:{grid:{display:false}}}}});
+
+  // Progress bar chart
+  var ep=document.getElementById('dashProgEmpty'),cv=document.getElementById('chProgress');
+  if(projects.length){
+    ep.style.display='none';cv.style.display='block';
+    chPr=destroyChart(chPr);
+    chPr=new Chart(cv,{type:'bar',data:{labels:projects.map(function(p){return p.name.substring(0,15)}),datasets:[{label:'%',data:projects.map(function(p){return p.prog}),backgroundColor:projects.map(function(p){return p.prog>=70?'rgba(52,211,153,.7)':p.prog>=40?'rgba(56,189,248,.6)':'rgba(245,158,11,.6)'}),borderRadius:6,hoverOffset:4}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,max:100},x:{grid:{display:false}}}}});
+  }else{ep.style.display='block';cv.style.display='none'}
+
+  // Project progress list
+  renderProjFilter('all');
+
+  // Activity feed
+  var af=document.getElementById('activityFeed');
+  if(!activityLog.length){af.innerHTML='<div style="text-align:center;padding:30px;color:var(--t3)">لا يوجد نشاط حديث</div>';return}
+  af.innerHTML=activityLog.slice(0,8).map(function(a,i){return '<div class="activity-item"><div class="activity-dot" style="background:'+a.color+';margin-top:5px"></div><div class="activity-line"></div><div class="info"><div class="title">'+a.title+'</div><div class="sub">'+a.sub+'</div></div><div class="tl-time">'+a.time+'</div></div>'}).join('');
+
+  // Risk table
+  document.getElementById('riskBody').innerHTML=projects.length?projects.filter(function(p){return p.risk!=='منخفض'}).map(function(p){var rc=p.risk==='عالي'?'red':'orange';return '<tr><td><b>'+p.name+'</b></td><td><div style="display:flex;align-items:center;gap:6px"><div class="prog-bar" style="width:80px"><div class="fill" style="width:'+p.prog+'%;background:var(--blue)"></div></div><span style="font-size:12px;font-family:Cairo">'+p.prog+'%</span></div></td><td><span class="badge blue">'+p.status+'</span></td><td><span class="badge '+rc+'">'+p.risk+'</span></td><td style="font-size:12px;color:var(--orange)">⚠️ متابعة</td></tr>'}).join(''):'<tr><td colspan="5" style="text-align:center;padding:30px;color:var(--t3)">لا توجد بيانات</td></tr>';
+
+  // Timeline
+  var upcomingTasks=tasks.filter(function(t){return t.st!=='completed'}).sort(function(a,b){return a.due>b.due?1:-1}).slice(0,6);
+  var tc2=document.getElementById('taskTimeline');
+  if(!upcomingTasks.length){tc2.innerHTML='<div style="text-align:center;padding:30px;color:var(--t3)">لا توجد مهام قادمة</div>';return}
+  tc2.innerHTML=upcomingTasks.map(function(t){var isOverdue=t.due&&new Date(t.due)<new Date();var dotColor=t.st==='in-progress'?'var(--blue)':isOverdue?'var(--red)':'var(--orange)';return '<div class="tl-item"><div class="tl-dot" style="background:'+dotColor+'"></div><div class="tl-content"><div class="tl-title">'+t.name+'</div><div class="tl-sub">'+t.assign+' · '+t.proj+'</div></div><div class="tl-time">'+t.due+'</div></div>'}).join('');
+}
+
+function renderProjFilter(v){
+  var pf=v||document.getElementById('progFilter').value;
+  var filtered=projects.filter(function(p){return pf==='all'||p.status===pf});
+  var el=document.getElementById('projProgressList');
+  if(!filtered.length){el.innerHTML='<div style="text-align:center;padding:20px;color:var(--t3)">لا توجد مشاريع</div>';return}
+  el.innerHTML=filtered.map(function(p){
+    var rc=p.prog>=70?'var(--green)':p.prog>=40?'var(--blue)':'var(--orange)';
+    var ptasks=tasks.filter(function(t){return t.proj===p.name});
+    var done=ptasks.filter(function(t){return t.st==='completed'}).length;
+    return '<div class="proj-progress-card"><div class="ppcard-top"><span class="ppcard-name">'+p.name+'</span><span class="ppcard-pct" style="color:'+rc+'">'+p.prog+'%</span></div><div class="prog-bar"><div class="fill" style="width:'+p.prog+'%;background:'+rc+'"></div></div><div class="ppcard-meta"><span>🏢 '+p.dept+'</span><span>✅ '+done+'/'+ptasks.length+' مهمة</span><span><span class="badge '+(p.risk==='عالي'?'red':p.risk==='متوسط'?'orange':'green')+'" style="padding:2px 8px;font-size:11px">'+p.risk+'</span></span></div></div>';
+  }).join('');
+}
+
+function switchDashChart(view,group){
+  document.querySelectorAll('#pg-dashboard .chart-tab').forEach(function(t){t.classList.remove('active')});
+  var paneId='pane-'+group+'-'+view;
+  document.querySelectorAll('[id^="pane-'+group+'-"]').forEach(function(p){p.classList.remove('active')});
+  var target=document.getElementById(paneId);
+  if(target){target.classList.add('active');event.target.classList.add('active')}
+}
+
+// ===================== REPORTS =====================
+var currentReport='overview';
+var repChartInstances={};
+
+function switchReport(r){
+  currentReport=r;
+  document.querySelectorAll('.r-tab').forEach(function(t){t.classList.remove('active')});
+  document.querySelectorAll('.report-section').forEach(function(s){s.classList.remove('active')});
+  event.target.classList.add('active');
+  var sec=document.getElementById('rep-'+r);
+  if(sec)sec.classList.add('active');
+  renderReportSection(r);
+}
+
+function renderReports(){
+  renderReportSection('overview');
+}
+
+function destroyRepChart(key){
+  if(repChartInstances[key]){repChartInstances[key].destroy();delete repChartInstances[key];}
+}
+
+function renderReportSection(r){
+  if(r==='overview')renderRepOverview();
+  if(r==='projects')renderRepProjects();
+  if(r==='tasks')renderRepTasks();
+  if(r==='financial')renderRepFinancial();
+  if(r==='performance')renderRepPerformance();
+}
+
+function renderRepOverview(){
+  var tc=tasks.filter(function(t){return t.st==='completed'}).length;
+  var ip=tasks.filter(function(t){return t.st==='in-progress'}).length;
+  var pn=tasks.filter(function(t){return t.st==='pending'}).length;
+  var totalB=projects.reduce(function(s,p){return s+p.budget},0);
+  var totalE=finData.reduce(function(s,f){return s+f.exps.reduce(function(a,e){return a+e.amt},0)},0);
+  var overdue=tasks.filter(function(t){return t.due&&new Date(t.due)<new Date()&&t.st!=='completed'}).length;
+  var rate=tasks.length?Math.round(tc/tasks.length*100):0;
+  
+  document.getElementById('repKPIs').innerHTML=[
+    ['blue','📁',projects.length,'مشاريع'],
+    ['green','✅',tc,'مكتملة'],
+    ['orange','📈',rate+'%','معدل الإنجاز'],
+    ['red','⏱️',overdue,'متأخرة'],
+    ['purple','💰',totalB.toLocaleString(),'الميزانية (ر.ع)'],
+    ['cyan','💸',totalE.toLocaleString(),'المصروفات'],
+  ].map(function(x){return '<div class="metric-highlight"><div class="mh-icon">'+x[1]+'</div><div class="mh-value" style="color:var(--'+x[0]+')">'+x[2]+'</div><div class="mh-label">'+x[3]+'</div></div>'}).join('');
+
+  destroyRepChart('repProjChart');destroyRepChart('repTaskChart');
+  var pip=projects.filter(function(p){return p.status==='قيد التنفيذ'}).length;
+  var pap=projects.filter(function(p){return p.status==='معتمد'}).length;
+  var pdr=projects.filter(function(p){return p.status==='مسودة'}).length;
+  repChartInstances['repProjChart']=new Chart(document.getElementById('repProjChart'),{type:'pie',data:{labels:['قيد التنفيذ','معتمد','مسودة'],datasets:[{data:[pip,pap,pdr],backgroundColor:['#38bdf8','#34d399','#f59e0b'],borderWidth:2,borderColor:'var(--card)'}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:14,font:{size:12}}}}}});
+  
+  var months=['يناير','فبراير','مارس','أبريل','مايو','يونيو'];
+  var taskData=months.map(function(_,i){return Math.max(0,tc-Math.round(tc*(5-i)/10)+(i>0?Math.floor(Math.random()*2):0))});
+  repChartInstances['repTaskChart']=new Chart(document.getElementById('repTaskChart'),{type:'line',data:{labels:months,datasets:[{label:'المهام المكتملة',data:taskData,borderColor:'#34d399',backgroundColor:'rgba(52,211,153,.1)',tension:.4,fill:true,pointRadius:5,pointBackgroundColor:'#34d399'},{label:'المهام الجديدة',data:months.map(function(){return Math.max(1,Math.floor(tasks.length/6))}),borderColor:'#38bdf8',backgroundColor:'rgba(56,189,248,.1)',tension:.4,fill:true,pointRadius:5,pointBackgroundColor:'#38bdf8'}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:14,font:{size:12}}}},scales:{y:{beginAtZero:true,grid:{color:'rgba(56,189,248,.05)'}},x:{grid:{display:false}}}}});
+
+  // Top performers
+  var perfMap={};
+  evals.forEach(function(e){if(!perfMap[e.emp])perfMap[e.emp]={c:0,t:0};perfMap[e.emp].c++;perfMap[e.emp].t+=e.s+e.q+e.p});
+  var performers=Object.entries(perfMap).map(function(x){return{name:x[0],avg:x[1].c?x[1].t/(x[1].c*3):0,count:x[1].c}}).sort(function(a,b){return b.avg-a.avg});
+  var rankNums=['gold','silver','bronze'];
+  document.getElementById('topPerformers').innerHTML=performers.length?performers.slice(0,5).map(function(p,i){return '<li class="rank-item"><div class="rank-num '+(rankNums[i]||'')+'">'+( i+1)+'</div><div class="rank-info"><div class="rank-name">'+p.name+'</div><div class="rank-sub">'+p.count+' تقييم</div></div><div class="rank-score" style="color:var(--'+(p.avg>=8?'green':p.avg>=6?'blue':'orange')+')">'+p.avg.toFixed(1)+'/10</div></li>'}).join(''):'<li style="padding:20px;text-align:center;color:var(--t3)">لا توجد تقييمات</li>';
+
+  // Performance summary
+  var avgProg=projects.length?Math.round(projects.reduce(function(s,p){return s+p.prog},0)/projects.length):0;
+  document.getElementById('perfSummary').innerHTML='<div class="summary-box"><h4>📊 ملخص الأداء الشامل</h4><p>إجمالي المشاريع: <b style="color:var(--blue)">'+projects.length+'</b> · قيد التنفيذ: <b style="color:var(--orange)">'+pip+'</b><br>إجمالي المهام: <b style="color:var(--blue)">'+tasks.length+'</b> · مكتملة: <b style="color:var(--green)">'+tc+'</b><br>متوسط التقدم: <b style="color:var(--cyan)">'+avgProg+'%</b> · متأخرة: <b style="color:var(--red)">'+overdue+'</b><br>الميزانية الكلية: <b style="color:var(--purple)">'+totalB.toLocaleString()+' ر.ع</b><br>المصروفات: <b style="color:var(--orange)">'+totalE.toLocaleString()+' ر.ع</b></p></div><div style="margin-top:12px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span style="color:var(--t2)">معدل إنجاز المهام</span><b style="font-family:Cairo">'+rate+'%</b></div><div class="prog-bar" style="height:10px"><div class="fill" style="width:'+rate+'%;background:linear-gradient(90deg,#38bdf8,#34d399)"></div></div></div>';
+}
+
+function renderRepProjects(){
+  var metrics=[['blue','📁',projects.length,'إجمالي المشاريع'],['green','✅',projects.filter(function(p){return p.status==='معتمد'}).length,'معتمد'],['orange','🔄',projects.filter(function(p){return p.status==='قيد التنفيذ'}).length,'قيد التنفيذ'],['red','⚠️',projects.filter(function(p){return p.risk==='عالي'}).length,'مخاطر عالية'],['purple','📊',projects.length?Math.round(projects.reduce(function(s,p){return s+p.prog},0)/projects.length):0+'%','متوسط التقدم'],['cyan','💰',projects.reduce(function(s,p){return s+p.budget},0).toLocaleString(),'الميزانية الكلية']];
+  document.getElementById('repProjMetrics').innerHTML=metrics.map(function(x){return '<div class="metric-highlight"><div class="mh-icon">'+x[1]+'</div><div class="mh-value" style="color:var(--'+x[0]+')">'+x[2]+'</div><div class="mh-label">'+x[3]+'</div></div>'}).join('');
+
+  // Project detail table
+  document.getElementById('repProjBody').innerHTML=projects.length?projects.map(function(p){
+    var ptasks=tasks.filter(function(t){return t.proj===p.name});
+    var done=ptasks.filter(function(t){return t.st==='completed'}).length;
+    var rate=ptasks.length?Math.round(done/ptasks.length*100):0;
+    var sc=p.status==='قيد التنفيذ'?'blue':p.status==='معتمد'?'green':'orange';
+    var rc=p.risk==='عالي'?'red':p.risk==='متوسط'?'orange':'green';
+    return '<tr><td><b>'+p.name+'</b></td><td>'+p.mgr+'</td><td><span class="badge '+sc+'">'+p.status+'</span></td><td><span class="badge '+rc+'">'+p.risk+'</span></td><td><div style="display:flex;align-items:center;gap:6px"><div class="prog-bar" style="width:70px"><div class="fill" style="width:'+p.prog+'%;background:var(--blue)"></div></div><span style="font-size:12px;font-family:Cairo">'+p.prog+'%</span></div></td><td style="font-family:Cairo;font-weight:700">'+ptasks.length+'</td><td style="font-family:Cairo;font-weight:700;color:var(--green)">'+done+'</td><td><span class="badge '+(rate>=70?'green':rate>=40?'blue':'orange')+'">'+rate+'%</span></td></tr>';
+  }).join(''):'<tr><td colspan="8" style="text-align:center;padding:30px;color:var(--t3)">لا توجد مشاريع</td></tr>';
+
+  destroyRepChart('repProjProgress');destroyRepChart('repRiskChart');
+  repChartInstances['repProjProgress']=new Chart(document.getElementById('repProjProgress'),{type:'bar',data:{labels:projects.map(function(p){return p.name.substring(0,12)}),datasets:[{label:'التقدم %',data:projects.map(function(p){return p.prog}),backgroundColor:projects.map(function(p){return p.prog>=70?'rgba(52,211,153,.7)':p.prog>=40?'rgba(56,189,248,.6)':'rgba(245,158,11,.6)'}),borderRadius:6}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,max:100,grid:{color:'rgba(56,189,248,.05)'}},x:{grid:{display:false}}}}});
+  var rLow=projects.filter(function(p){return p.risk==='منخفض'}).length;
+  var rMed=projects.filter(function(p){return p.risk==='متوسط'}).length;
+  var rHi=projects.filter(function(p){return p.risk==='عالي'}).length;
+  repChartInstances['repRiskChart']=new Chart(document.getElementById('repRiskChart'),{type:'doughnut',data:{labels:['منخفض','متوسط','عالي'],datasets:[{data:[rLow,rMed,rHi],backgroundColor:['rgba(52,211,153,.7)','rgba(245,158,11,.7)','rgba(239,68,68,.7)'],borderWidth:0,hoverOffset:6}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:14}}},cutout:'60%'}});
+}
+
+function renderRepTasks(){
+  var tc=tasks.filter(function(t){return t.st==='completed'}).length;
+  var ip=tasks.filter(function(t){return t.st==='in-progress'}).length;
+  var pn=tasks.filter(function(t){return t.st==='pending'}).length;
+  var overdue=tasks.filter(function(t){return t.due&&new Date(t.due)<new Date()&&t.st!=='completed'}).length;
+  var highP=tasks.filter(function(t){return t.pri==='high'||t.pri==='urgent'}).length;
+  var rate=tasks.length?Math.round(tc/tasks.length*100):0;
+  document.getElementById('repTaskMetrics').innerHTML=[['blue','📋',tasks.length,'إجمالي المهام'],['green','✅',tc,'مكتملة'],['orange','🔄',ip,'قيد التنفيذ'],['red','⏱️',overdue,'متأخرة'],['purple','⭐',highP,'عالية الأولوية'],['cyan','📈',rate+'%','معدل الإنجاز']].map(function(x){return '<div class="metric-highlight"><div class="mh-icon">'+x[1]+'</div><div class="mh-value" style="color:var(--'+x[0]+')">'+x[2]+'</div><div class="mh-label">'+x[3]+'</div></div>'}).join('');
+  
+  destroyRepChart('repTaskStatus');destroyRepChart('repTaskAssign');
+  repChartInstances['repTaskStatus']=new Chart(document.getElementById('repTaskStatus'),{type:'doughnut',data:{labels:['مكتملة','قيد التنفيذ','معلقة'],datasets:[{data:[tc,ip,pn],backgroundColor:['#34d399','#38bdf8','#f59e0b'],borderWidth:0,hoverOffset:6}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:14}}},cutout:'65%'}});
+  
+  var wl={};tasks.forEach(function(t){wl[t.assign]=(wl[t.assign]||0)+1});
+  var wn=Object.keys(wl),wd=Object.values(wl);
+  repChartInstances['repTaskAssign']=new Chart(document.getElementById('repTaskAssign'),{type:'bar',data:{labels:wn.length?wn:['لا توجد'],datasets:[{label:'المهام',data:wd.length?wd:[0],backgroundColor:'rgba(56,189,248,.6)',borderRadius:6,hoverBackgroundColor:'rgba(56,189,248,.9)'}]},options:{responsive:true,indexAxis:'y',plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,grid:{color:'rgba(56,189,248,.05)'}},y:{grid:{display:false}}}}});
+  renderRepTaskTable();
+}
+
+function renderRepTaskTable(){
+  var fv=document.getElementById('repTaskFilter')?document.getElementById('repTaskFilter').value:'all';
+  var ft=tasks.filter(function(t){return fv==='all'||t.st===fv});
+  var sc=function(s){return s==='completed'?'green':s==='in-progress'?'blue':'orange'};
+  var pc=function(p){return p==='urgent'?'red':p==='high'?'orange':'gray'};
+  document.getElementById('repTaskTable').innerHTML=ft.length?ft.map(function(t){return '<tr><td><b>'+t.name+'</b></td><td><span class="badge blue">'+t.proj+'</span></td><td>'+t.assign+'</td><td style="font-size:13px;font-family:Cairo">'+t.due+'</td><td><span class="badge '+sc(t.st)+'">'+(SL[t.st]||t.st)+'</span></td><td><span class="badge '+pc(t.pri)+'">'+(PRI[t.pri]||t.pri)+'</span></td></tr>'}).join(''):'<tr><td colspan="6" style="text-align:center;padding:30px;color:var(--t3)">لا توجد مهام</td></tr>';
+}
+
+function renderRepFinancial(){
+  var totalB=projects.reduce(function(s,p){return s+p.budget},0);
+  var totalE=finData.reduce(function(s,f){return s+f.exps.reduce(function(a,e){return a+e.amt},0)},0);
+  var rem=totalB-totalE;
+  var rate=totalB>0?Math.round(totalE/totalB*100):0;
+  var overBudget=finData.filter(function(f){var e=f.exps.reduce(function(s,x){return s+x.amt},0);return e>f.budget}).length;
+  document.getElementById('repFinMetrics').innerHTML=[['blue','💰',totalB.toLocaleString(),'إجمالي الميزانية'],['red','💸',totalE.toLocaleString(),'إجمالي المصروفات'],['green','💵',rem.toLocaleString(),'المتبقي'],['orange','📊',rate+'%','نسبة الاستهلاك'],['red','⚠️',overBudget,'تجاوزت الميزانية'],['purple','📁',finData.length,'مشاريع مالية']].map(function(x){return '<div class="metric-highlight"><div class="mh-icon">'+x[1]+'</div><div class="mh-value" style="color:var(--'+x[0]+')">'+x[2]+'</div><div class="mh-label">'+x[3]+'</div></div>'}).join('');
+  
+  destroyRepChart('repFinChart');destroyRepChart('repExpChart');
+  repChartInstances['repFinChart']=new Chart(document.getElementById('repFinChart'),{type:'bar',data:{labels:finData.map(function(f){return f.name.substring(0,12)}),datasets:[{label:'الميزانية',data:finData.map(function(f){return f.budget}),backgroundColor:'rgba(56,189,248,.5)',borderRadius:5},{label:'المصروفات',data:finData.map(function(f){return f.exps.reduce(function(s,e){return s+e.amt},0)}),backgroundColor:'rgba(239,68,68,.5)',borderRadius:5}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:14}}},scales:{y:{beginAtZero:true,grid:{color:'rgba(56,189,248,.05)'}},x:{grid:{display:false}}}}});
+
+  // Expense by type
+  var expTypes={};
+  finData.forEach(function(f){f.exps.forEach(function(e){expTypes[e.type]=(expTypes[e.type]||0)+e.amt})});
+  var etKeys=Object.keys(expTypes),etVals=Object.values(expTypes);
+  repChartInstances['repExpChart']=new Chart(document.getElementById('repExpChart'),{type:'doughnut',data:{labels:etKeys.length?etKeys:['لا توجد'],datasets:[{data:etVals.length?etVals:[1],backgroundColor:['#38bdf8','#34d399','#f59e0b','#ef4444','#a78bfa'],borderWidth:0,hoverOffset:6}]},options:{responsive:true,plugins:{legend:{position:'bottom',labels:{padding:12}}},cutout:'55%'}});
+
+  // Financial table
+  document.getElementById('repFinTable').innerHTML=finData.length?finData.map(function(f){
+    var te=f.exps.reduce(function(s,e){return s+e.amt},0);var rem2=f.budget-te;var pct=f.budget>0?Math.round(te/f.budget*100):0;var sts=pct>90?'red':pct>70?'orange':'green';
+    return '<tr><td><b>'+f.name+'</b></td><td style="font-family:Cairo;font-weight:700;color:var(--blue)">'+f.budget+'</td><td style="font-family:Cairo;font-weight:700;color:var(--red)">'+te+'</td><td style="font-family:Cairo;font-weight:700;color:var(--green)">'+rem2+'</td><td><div style="display:flex;align-items:center;gap:6px"><div class="prog-bar" style="width:80px"><div class="fill" style="width:'+pct+'%;background:var(--'+sts+')"></div></div><span style="font-size:12px;font-family:Cairo">'+pct+'%</span></div></td><td><span class="badge '+(pct>90?'red':pct>70?'orange':'green')+'">'+(pct>90?'تجاوز':pct>70?'مرتفع':'طبيعي')+'</span></td></tr>';
+  }).join(''):'<tr><td colspan="6" style="text-align:center;padding:30px;color:var(--t3)">لا توجد بيانات مالية</td></tr>';
+}
+
+function renderRepPerformance(){
+  var avgScore=evals.length?(evals.reduce(function(s,e){return s+e.s+e.q+e.p},0)/(evals.length*3)).toFixed(1):0;
+  var avgSpeed=evals.length?(evals.reduce(function(s,e){return s+e.s},0)/evals.length).toFixed(1):0;
+  var avgQuality=evals.length?(evals.reduce(function(s,e){return s+e.q},0)/evals.length).toFixed(1):0;
+  var avgCommit=evals.length?(evals.reduce(function(s,e){return s+e.p},0)/evals.length).toFixed(1):0;
+  var excellent=evals.filter(function(e){return (e.s+e.q+e.p)/3>=8}).length;
+  document.getElementById('repPerfMetrics').innerHTML=[['blue','📋',evals.length,'إجمالي التقييمات'],['green','⭐',avgScore,'متوسط الأداء'],['orange','⚡',avgSpeed,'متوسط السرعة'],['purple','🎯',avgQuality,'متوسط الجودة'],['cyan','🤝',avgCommit,'متوسط الالتزام'],['green','🏆',excellent,'ممتاز']].map(function(x){return '<div class="metric-highlight"><div class="mh-icon">'+x[1]+'</div><div class="mh-value" style="color:var(--'+x[0]+')">'+x[2]+'</div><div class="mh-label">'+x[3]+'</div></div>'}).join('');
+
+  // Rankings
+  var perfMap={};
+  evals.forEach(function(e){if(!perfMap[e.emp])perfMap[e.emp]={c:0,s:0,q:0,p:0};perfMap[e.emp].c++;perfMap[e.emp].s+=e.s;perfMap[e.emp].q+=e.q;perfMap[e.emp].p+=e.p});
+  var ranked=Object.entries(perfMap).map(function(x){return{name:x[0],avg:(x[1].s+x[1].q+x[1].p)/(x[1].c*3),speed:x[1].s/x[1].c,quality:x[1].q/x[1].c,commit:x[1].p/x[1].c,count:x[1].c}}).sort(function(a,b){return b.avg-a.avg});
+  var medals=['gold','silver','bronze'];
+  document.getElementById('repRankList').innerHTML=ranked.length?ranked.slice(0,6).map(function(p,i){return '<li class="rank-item"><div class="rank-num '+(medals[i]||'')+'">'+( i+1)+'</div><div class="rank-info"><div class="rank-name">'+p.name+'</div><div class="rank-sub">'+p.count+' تقييم · سرعة '+p.speed.toFixed(1)+' · جودة '+p.quality.toFixed(1)+'</div></div><div class="rank-score" style="color:var(--'+(p.avg>=8?'green':p.avg>=6?'blue':'orange')+')">'+p.avg.toFixed(1)+'</div></li>'}).join(''):'<li style="padding:20px;text-align:center;color:var(--t3)">لا توجد تقييمات</li>';
+
+  destroyRepChart('repPerfChart');
+  repChartInstances['repPerfChart']=new Chart(document.getElementById('repPerfChart'),{type:'radar',data:{labels:['السرعة','الجودة','الالتزام'],datasets:ranked.slice(0,3).map(function(p,i){var clrs=['#38bdf8','#34d399','#a78bfa'];return{label:p.name,data:[p.speed,p.quality,p.commit],borderColor:clrs[i],backgroundColor:clrs[i].replace('#','rgba(').replace('38bdf8','56,189,248,.1').replace('34d399','52,211,153,.1').replace('a78bfa','167,139,250,.1'),pointBackgroundColor:clrs[i],pointRadius:5}})},options:{responsive:true,scales:{r:{min:0,max:10,ticks:{stepSize:2,font:{size:10}},grid:{color:'rgba(56,189,248,.1)'},pointLabels:{font:{size:13,family:'Tajawal'}}}},plugins:{legend:{position:'bottom',labels:{padding:14,font:{size:12}}}}}});
+
+  // Performance table
+  document.getElementById('repPerfTable').innerHTML=ranked.length?ranked.map(function(p){var grade=p.avg>=9?'ممتاز':p.avg>=7?'جيد جداً':p.avg>=5?'جيد':'يحتاج تحسين';var gc=p.avg>=9?'green':p.avg>=7?'blue':p.avg>=5?'orange':'red';return '<tr><td style="font-weight:700;color:var(--blue)">'+p.name+'</td><td style="font-family:Cairo;text-align:center">'+p.count+'</td><td>'+p.speed.toFixed(1)+'/10</td><td>'+p.quality.toFixed(1)+'/10</td><td>'+p.commit.toFixed(1)+'/10</td><td style="font-family:Cairo;font-weight:800">'+(p.avg*3).toFixed(1)+'/30</td><td><span class="badge '+gc+'">'+grade+'</span></td></tr>'}).join(''):'<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--t3)">لا توجد تقييمات</td></tr>';
+}
+
+function printReport(){window.print();toast('جارٍ الطباعة...')}
+
+// ===================== PROJECTS =====================
 function renderProjects(){var sf=document.getElementById('projStat')?document.getElementById('projStat').value:'all';var s=(document.getElementById('projSearch')?document.getElementById('projSearch').value:'').toLowerCase();var f=projects.filter(function(p){return(sf==='all'||p.status===sf)&&(!s||p.name.includes(s))});var sc=function(s){return s==='قيد التنفيذ'?'blue':s==='معتمد'?'green':s==='مسودة'?'orange':'red'};var rc=function(r){return r==='عالي'?'red':r==='متوسط'?'orange':'green'};document.getElementById('projBody').innerHTML=f.length?f.map(function(p){return '<tr><td><b>'+p.name+'</b></td><td>'+p.mgr+'</td><td><span class="badge blue">'+p.dept+'</span></td><td><span class="badge '+sc(p.status)+'">'+p.status+'</span></td><td><span class="badge '+rc(p.risk)+'">'+p.risk+'</span></td><td><div style="display:flex;align-items:center;gap:6px"><div class="prog-bar" style="width:80px"><div class="fill" style="width:'+p.prog+'%;background:var(--blue)"></div></div><span style="font-size:12px;font-family:Cairo">'+p.prog+'%</span></div></td><td><button class="act-btn" style="color:var(--orange)" onclick="editProject('+p.id+')">✏️</button> <button class="act-btn del" onclick="delProject('+p.id+')">🗑️</button></td></tr>'}).join(''):'<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--t3)">لا توجد مشاريع</td></tr>'}
 async function addProject(){var n=document.getElementById('pName').value;if(!n)return;var b=parseFloat(document.getElementById('pBudget').value)||0;var res=await dbInsert('pms_projects',{name:n,manager:document.getElementById('pMgr').value,dept:document.getElementById('pDept').value,status:document.getElementById('pStat').value,risk:document.getElementById('pRisk').value,budget:b});if(res&&res[0]){projects.push({id:res[0].id,name:n,mgr:res[0].manager,dept:res[0].dept,status:res[0].status,risk:res[0].risk,budget:b,prog:0});finData.push({name:n,budget:b,exps:[]})}hideModal('projModal');renderUI();toast('تمت الإضافة ✅');document.getElementById('pName').value='';document.getElementById('pBudget').value=''}
 async function delProject(id){var p=projects.find(function(x){return x.id===id});if(!p||!confirm('حذف '+p.name+'؟'))return;await dbDelete('pms_projects',id);projects=projects.filter(function(x){return x.id!==id});finData=finData.filter(function(x){return x.name!==p.name});renderUI();renderFinance();toast('تم الحذف')}
 function editProject(id){var p=projects.find(function(x){return x.id===id});if(!p)return;showModal('projModal');document.getElementById('pName').value=p.name;document.getElementById('pDept').value=p.dept;document.getElementById('pStat').value=p.status;document.getElementById('pRisk').value=p.risk;document.getElementById('pBudget').value=p.budget||'';setTimeout(function(){document.getElementById('pMgr').value=p.mgr},50);document.querySelector('#projModal .f-submit').onclick=async function(){var n=document.getElementById('pName').value;if(!n)return;var old=p.name;var b=parseFloat(document.getElementById('pBudget').value)||p.budget;await dbUpdate('pms_projects',id,{name:n,manager:document.getElementById('pMgr').value,dept:document.getElementById('pDept').value,status:document.getElementById('pStat').value,risk:document.getElementById('pRisk').value,budget:b});p.name=n;p.mgr=document.getElementById('pMgr').value;p.dept=document.getElementById('pDept').value;p.status=document.getElementById('pStat').value;p.risk=document.getElementById('pRisk').value;p.budget=b;var fd=finData.find(function(f){return f.name===old});if(fd){fd.name=n;fd.budget=b}hideModal('projModal');document.querySelector('#projModal .f-submit').onclick=function(){addProject()};renderUI();renderFinance();toast('تم التحديث ✅')}}
 
-// === TASKS ===
+// ===================== TASKS =====================
 function getFilteredTasks(){var s=(document.getElementById('taskSearch')?document.getElementById('taskSearch').value:'').toLowerCase();var sf=document.getElementById('taskStatF')?document.getElementById('taskStatF').value:'all';return tasks.filter(function(t){if(s&&t.name.toLowerCase().indexOf(s)===-1&&t.assign.indexOf(s)===-1)return false;if(sf!=='all'&&t.st!==sf)return false;if(curQF==='overdue'){var d=new Date(t.due);if(d>=new Date()||t.st==='completed')return false}if(curQF==='priority'&&t.pri!=='high'&&t.pri!=='urgent')return false;return true})}
 function renderTasks(){var f=getFilteredTasks();if(curTV==='table'){document.getElementById('taskBody').innerHTML=f.length?f.map(function(t){var sc=t.st==='completed'?'green':t.st==='in-progress'?'blue':'orange';return '<tr><td><b>'+t.name+'</b><br><span style="font-size:12px;color:var(--t3)">'+t.proj+'</span></td><td><span class="badge blue">'+t.assign+'</span></td><td style="font-weight:700;font-family:Cairo">'+t.w+'</td><td style="font-size:13px;font-family:Cairo">📅 '+t.due+'</td><td><span class="badge '+sc+'">'+(SL[t.st]||t.st)+'</span></td><td><button class="act-btn" style="color:var(--orange)" onclick="editTask('+t.id+')">✏️</button> <button class="act-btn del" onclick="delTask('+t.id+')">🗑️</button></td></tr>'}).join(''):'<tr><td colspan="6" style="text-align:center;padding:30px;color:var(--t3)">لا توجد مهام</td></tr>'}else{var cols={pending:[],'in-progress':[],completed:[]};f.forEach(function(t){if(cols[t.st])cols[t.st].push(t)});document.getElementById('boardCols').innerHTML=[{k:'pending',l:'معلقة'},{k:'in-progress',l:'قيد التنفيذ'},{k:'completed',l:'مكتملة'}].map(function(c){return '<div class="board-col"><div class="board-col-hd">'+c.l+'<span class="cnt">'+cols[c.k].length+'</span></div><div class="board-col-bd">'+cols[c.k].map(function(t){return '<div class="b-card"><div class="b-card-t">'+t.name+'</div><div class="b-card-m"><span style="color:var(--blue)">'+t.assign+'</span><span>'+t.due+'</span></div></div>'}).join('')+'</div></div>'}).join('')}}
 function switchTV(v){curTV=v;document.getElementById('taskTV').style.display=v==='table'?'block':'none';document.getElementById('taskBV').style.display=v==='board'?'block':'none';document.getElementById('tv-table').classList.toggle('active',v==='table');document.getElementById('tv-board').classList.toggle('active',v==='board');renderTasks()}
@@ -396,26 +967,19 @@ async function addTask(){var n=document.getElementById('tName').value;if(!n)retu
 async function delTask(id){if(!confirm('حذف؟'))return;await dbDelete('pms_tasks',id);tasks=tasks.filter(function(x){return x.id!==id});renderUI();toast('تم الحذف')}
 function editTask(id){var t=tasks.find(function(x){return x.id===id});if(!t)return;showModal('taskModal');document.getElementById('tName').value=t.name;document.getElementById('tDate').value=t.due;document.getElementById('tStat').value=t.st;document.getElementById('tPri').value=t.pri||'normal';setTimeout(function(){document.getElementById('tProj').value=t.proj;document.getElementById('tAssign').value=t.assign},50);document.querySelector('#taskModal .f-submit').onclick=async function(){var n=document.getElementById('tName').value;if(!n)return;await dbUpdate('pms_tasks',id,{name:n,project:document.getElementById('tProj').value,assignee:document.getElementById('tAssign').value,due_date:document.getElementById('tDate').value,status:document.getElementById('tStat').value,priority:document.getElementById('tPri').value});t.name=n;t.proj=document.getElementById('tProj').value;t.assign=document.getElementById('tAssign').value;t.due=document.getElementById('tDate').value;t.st=document.getElementById('tStat').value;t.pri=document.getElementById('tPri').value;hideModal('taskModal');document.querySelector('#taskModal .f-submit').onclick=function(){addTask()};renderUI();toast('تم التحديث ✅')}}
 
-// === CALENDAR ===
+// ===================== CALENDAR =====================
 function renderCal(){var ms=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];document.getElementById('calTitle').textContent=ms[calM]+' '+calY;var cp=document.getElementById('calProj');var cv=cp.value;cp.innerHTML='<option value="all">جميع المشاريع</option>'+projects.map(function(p){return '<option'+(p.name===cv?' selected':'')+'>'+p.name+'</option>'}).join('');var pf=cp.value;var first=new Date(calY,calM,1).getDay();var start=(first+1)%7;var days=new Date(calY,calM+1,0).getDate();var today=new Date();var html='';for(var i=0;i<start;i++)html+='<div></div>';for(var d=1;d<=days;d++){var ds=calY+'-'+String(calM+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');var isT=(d===today.getDate()&&calM===today.getMonth()&&calY===today.getFullYear());var ev=tasks.filter(function(t){return t.due===ds&&(pf==='all'||t.proj===pf)});html+='<div style="min-height:52px;padding:4px;border:1px solid var(--bdr);border-radius:6px;'+(isT?'background:rgba(56,189,248,.08);border-color:var(--blue)':'')+'"><div style="font-size:13px;font-weight:'+(isT?'800':'600')+';color:'+(isT?'var(--blue)':'var(--t2)')+'">'+d+'</div>';ev.forEach(function(e){var c=e.st==='completed'?'green':e.st==='in-progress'?'blue':'orange';html+='<div style="font-size:10px;padding:2px 4px;border-radius:3px;margin-top:1px;background:rgba('+(c==='blue'?'56,189,248':c==='green'?'52,211,153':'245,158,11')+',.15);color:var(--'+c+');white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+e.name+'</div>'});html+='</div>'}document.getElementById('calGrid').innerHTML=html}
 function calNav(dir){calM+=dir;if(calM>11){calM=0;calY++}if(calM<0){calM=11;calY--}renderCal()}
 
-// === FINANCE ===
-function renderFinance(forceIdx){var sel=document.getElementById('finProj');if(forceIdx!==undefined)_finIdx=forceIdx;sel.innerHTML=finData.length?finData.map(function(f,i){return '<option value="'+i+'"'+(i===_finIdx?' selected':'')+'>'+f.name+'</option>'}).join(''):'<option>لا توجد مشاريع</option>';if(!finData.length){document.getElementById('finProjName').textContent='';document.getElementById('finStats').innerHTML='<div style="text-align:center;padding:20px;color:var(--t3)">أضف مشاريع أولاً</div>';document.getElementById('expBody').innerHTML='';document.getElementById('finSummary').innerHTML='';document.getElementById('gaugePct').textContent='0%';return}if(_finIdx>=finData.length)_finIdx=0;var p=finData[_finIdx];if(!p)return;var te=p.exps.reduce(function(s,e){return s+e.amt},0);var rem=p.budget-te;var pct=p.budget>0?Math.round(te/p.budget*100):0;document.getElementById('finProjName').textContent=p.name;
-document.getElementById('finStats').innerHTML='<div class="fin-stat"><div class="fin-stat-l"><div class="fin-dot" style="background:var(--blue)"></div><span class="fin-lbl">الميزانية</span></div><span class="fin-val" style="color:var(--blue)">'+p.budget+' <small style="font-size:12px">ر.ع</small></span></div><div class="fin-stat"><div class="fin-stat-l"><div class="fin-dot" style="background:var(--red)"></div><span class="fin-lbl">المصروفات</span></div><span class="fin-val" style="color:var(--red)">'+te+' <small style="font-size:12px">ر.ع</small></span></div><div class="fin-stat"><div class="fin-stat-l"><div class="fin-dot" style="background:var(--green)"></div><span class="fin-lbl">المتبقي</span></div><span class="fin-val" style="color:var(--green)">'+rem+' <small style="font-size:12px">ر.ع</small></span></div>';
-document.getElementById('gaugePct').textContent=pct+'%';if(gChart)gChart.destroy();gChart=new Chart(document.getElementById('gaugeChart'),{type:'doughnut',data:{datasets:[{data:[te,Math.max(rem,0)],backgroundColor:['rgba(239,68,68,.8)','rgba(52,211,153,.6)'],borderWidth:0,circumference:270,rotation:225}]},options:{responsive:true,maintainAspectRatio:true,cutout:'72%',plugins:{legend:{display:false},tooltip:{enabled:false}}}});
-document.getElementById('expBody').innerHTML=p.exps.length?p.exps.map(function(e){return '<tr><td><b>'+e.type+'</b></td><td style="font-weight:800;font-family:Cairo;color:var(--red)">'+e.amt+' ر.ع</td><td style="color:var(--t3)">'+e.inv+'</td><td><button class="act-btn del" onclick="delExpense('+e.id+')">🗑️</button></td></tr>'}).join(''):'<tr><td colspan="4" style="text-align:center;padding:20px;color:var(--t3)">لا مصروفات</td></tr>';
-var tb=0,tex=0;document.getElementById('finSummary').innerHTML=finData.map(function(f){var ex=f.exps.reduce(function(s,e){return s+e.amt},0);tb+=f.budget;tex+=ex;var pc=f.budget>0?Math.round(ex/f.budget*100):0;return '<tr><td><b>'+f.name+'</b></td><td style="color:var(--blue);font-weight:700;font-family:Cairo">'+f.budget+'</td><td style="color:var(--red);font-weight:700;font-family:Cairo">'+ex+'</td><td style="color:var(--green);font-weight:700;font-family:Cairo">'+(f.budget-ex)+'</td><td><div style="display:flex;align-items:center;gap:6px"><div class="prog-bar" style="width:60px"><div class="fill" style="width:'+pc+'%;background:'+(pc>70?'var(--red)':'var(--blue)')+'"></div></div><span style="font-size:12px;font-family:Cairo">'+pc+'%</span></div></td></tr>'}).join('')+'<tr style="border-top:2px solid var(--bdr);font-weight:800"><td>الإجمالي</td><td style="color:var(--blue);font-family:Cairo">'+tb+'</td><td style="color:var(--red);font-family:Cairo">'+tex+'</td><td style="color:var(--green);font-family:Cairo">'+(tb-tex)+'</td><td></td></tr>'}
+// ===================== FINANCE =====================
+function renderFinance(forceIdx){var sel=document.getElementById('finProj');if(forceIdx!==undefined)_finIdx=forceIdx;sel.innerHTML=finData.length?finData.map(function(f,i){return '<option value="'+i+'"'+(i===_finIdx?' selected':'')+'>'+f.name+'</option>'}).join(''):'<option>لا توجد مشاريع</option>';if(!finData.length){document.getElementById('finProjName').textContent='';document.getElementById('finStats').innerHTML='<div style="text-align:center;padding:20px;color:var(--t3)">أضف مشاريع أولاً</div>';document.getElementById('expBody').innerHTML='';document.getElementById('finSummary').innerHTML='';document.getElementById('gaugePct').textContent='0%';return}if(_finIdx>=finData.length)_finIdx=0;var p=finData[_finIdx];if(!p)return;var te=p.exps.reduce(function(s,e){return s+e.amt},0);var rem=p.budget-te;var pct=p.budget>0?Math.round(te/p.budget*100):0;document.getElementById('finProjName').textContent=p.name;document.getElementById('finStats').innerHTML='<div class="fin-stat"><div class="fin-stat-l"><div class="fin-dot" style="background:var(--blue)"></div><span class="fin-lbl">الميزانية</span></div><span class="fin-val" style="color:var(--blue)">'+p.budget+' <small style="font-size:12px">ر.ع</small></span></div><div class="fin-stat"><div class="fin-stat-l"><div class="fin-dot" style="background:var(--red)"></div><span class="fin-lbl">المصروفات</span></div><span class="fin-val" style="color:var(--red)">'+te+' <small style="font-size:12px">ر.ع</small></span></div><div class="fin-stat"><div class="fin-stat-l"><div class="fin-dot" style="background:var(--green)"></div><span class="fin-lbl">المتبقي</span></div><span class="fin-val" style="color:var(--green)">'+rem+' <small style="font-size:12px">ر.ع</small></span></div>';document.getElementById('gaugePct').textContent=pct+'%';if(gChart)gChart.destroy();gChart=new Chart(document.getElementById('gaugeChart'),{type:'doughnut',data:{datasets:[{data:[te,Math.max(rem,0)],backgroundColor:['rgba(239,68,68,.8)','rgba(52,211,153,.6)'],borderWidth:0,circumference:270,rotation:225}]},options:{responsive:true,maintainAspectRatio:true,cutout:'72%',plugins:{legend:{display:false},tooltip:{enabled:false}}}});document.getElementById('expBody').innerHTML=p.exps.length?p.exps.map(function(e){return '<tr><td><b>'+e.type+'</b></td><td style="font-weight:800;font-family:Cairo;color:var(--red)">'+e.amt+' ر.ع</td><td style="color:var(--t3)">'+e.inv+'</td><td><button class="act-btn del" onclick="delExpense('+e.id+')">🗑️</button></td></tr>'}).join(''):'<tr><td colspan="4" style="text-align:center;padding:20px;color:var(--t3)">لا مصروفات</td></tr>';var tb=0,tex=0;document.getElementById('finSummary').innerHTML=finData.map(function(f){var ex=f.exps.reduce(function(s,e){return s+e.amt},0);tb+=f.budget;tex+=ex;var pc=f.budget>0?Math.round(ex/f.budget*100):0;return '<tr><td><b>'+f.name+'</b></td><td style="color:var(--blue);font-weight:700;font-family:Cairo">'+f.budget+'</td><td style="color:var(--red);font-weight:700;font-family:Cairo">'+ex+'</td><td style="color:var(--green);font-weight:700;font-family:Cairo">'+(f.budget-ex)+'</td><td><div style="display:flex;align-items:center;gap:6px"><div class="prog-bar" style="width:60px"><div class="fill" style="width:'+pc+'%;background:'+(pc>70?'var(--red)':'var(--blue)')+'"></div></div><span style="font-size:12px;font-family:Cairo">'+pc+'%</span></div></td></tr>'}).join('')+'<tr style="border-top:2px solid var(--bdr);font-weight:800"><td>الإجمالي</td><td style="color:var(--blue);font-family:Cairo">'+tb+'</td><td style="color:var(--red);font-family:Cairo">'+tex+'</td><td style="color:var(--green);font-family:Cairo">'+(tb-tex)+'</td><td></td></tr>'}
 async function addExpense(){var a=parseFloat(document.getElementById('eAmt').value);var b=parseFloat(document.getElementById('eBudget').value);if(!a&&!b){toast('أدخل مبلغ');return}if(!finData[_finIdx])return;if(b){finData[_finIdx].budget=b;var pr=projects.find(function(p){return p.name===finData[_finIdx].name});if(pr){pr.budget=b;await dbUpdate('pms_projects',pr.id,{budget:b})}}if(a){var res=await dbInsert('pms_expenses',{project_name:finData[_finIdx].name,type:document.getElementById('eType').value,amount:a,invoice:document.getElementById('eInv').value||'-'});if(res&&res[0])finData[_finIdx].exps.push({id:res[0].id,type:res[0].type,amt:a,inv:res[0].invoice||'-'})}hideModal('expModal');renderFinance();toast('تمت الإضافة ✅');document.getElementById('eAmt').value='';document.getElementById('eBudget').value=''}
 async function delExpense(id){if(!confirm('حذف؟'))return;await dbDelete('pms_expenses',id);finData[_finIdx].exps=finData[_finIdx].exps.filter(function(x){return x.id!==id});renderFinance();toast('تم الحذف')}
 
-// === HR ===
-function renderHR(){var s=(document.getElementById('hrSearch')?document.getElementById('hrSearch').value:'').toLowerCase();var df=document.getElementById('hrDept')?document.getElementById('hrDept').value:'all';var all=getAllEmps();var f=all.filter(function(e){if(s&&!e.name.includes(s)&&!e.email.includes(s))return false;return df==='all'||e.dept===df});var avail=f.filter(function(e){return e.avail==='available'}).length;var busy=f.filter(function(e){return e.avail==='busy'}).length;
-document.getElementById('hrStats').innerHTML=[['blue','👥','الموظفين',f.length],['green','✅','متاحون',avail],['orange','⏱️','مشغولون',busy],['purple','🏢','أقسام',new Set(f.map(function(e){return e.dept})).size]].map(function(x){return '<div class="st-card"><div style="position:absolute;top:0;right:0;left:0;height:3px;background:var(--'+x[0]+')"></div><div class="st-ic" style="background:rgba(56,189,248,.1)">'+x[1]+'</div><div class="st-lb">'+x[2]+'</div><div class="st-vl" style="color:var(--'+x[0]+')">'+x[3]+'</div></div>'}).join('');
-document.getElementById('hrDepts').innerHTML=depts.filter(function(d){return df==='all'||d.n===df}).map(function(d){var de=f.filter(function(e){return e.dept===d.n});return '<div class="dept-card open"><div class="dept-hd" onclick="this.parentElement.classList.toggle(\'open\')"><div class="dept-ic">'+d.i+'</div><div><div class="dept-nm">'+d.n+'</div><div class="dept-cnt">'+de.length+' موظف</div></div><div class="dept-tgl">▼</div></div><div class="dept-bd">'+(de.length?de.map(function(e){return '<div class="emp-row"><div class="emp-av">👤</div><div class="emp-info"><div class="emp-nm">'+e.name+'</div><div class="emp-rl">'+e.role+'</div></div><span class="badge '+(e.avail==='available'?'green':'orange')+'">'+(e.avail==='available'?'✓ متاح':'⬤ مشغول ('+e.tasks+')')+'</span></div>'}).join(''):'<div style="padding:16px;text-align:center;color:var(--t3)">لا يوجد</div>')+'</div></div>'}).join('');
-document.getElementById('hrBody').innerHTML=f.length?f.map(function(e){return '<tr><td><b>'+e.name+'</b></td><td><span class="badge '+(e.avail==='available'?'green':'orange')+'">'+(e.avail==='available'?'✓ متاح':'⬤ مشغول')+'</span></td><td style="color:var(--t3);font-size:13px">'+e.email+'</td><td><span class="badge gray">'+e.role+'</span></td><td><span class="badge blue">'+e.dept+'</span></td></tr>'}).join(''):'<tr><td colspan="5" style="text-align:center;padding:30px;color:var(--t3)">لا يوجد</td></tr>'}
+// ===================== HR =====================
+function renderHR(){var s=(document.getElementById('hrSearch')?document.getElementById('hrSearch').value:'').toLowerCase();var df=document.getElementById('hrDept')?document.getElementById('hrDept').value:'all';var all=getAllEmps();var f=all.filter(function(e){if(s&&!e.name.includes(s)&&!e.email.includes(s))return false;return df==='all'||e.dept===df});var avail=f.filter(function(e){return e.avail==='available'}).length;var busy=f.filter(function(e){return e.avail==='busy'}).length;document.getElementById('hrStats').innerHTML=[['blue','👥','الموظفين',f.length],['green','✅','متاحون',avail],['orange','⏱️','مشغولون',busy],['purple','🏢','أقسام',new Set(f.map(function(e){return e.dept})).size]].map(function(x){return '<div class="st-card"><div style="position:absolute;top:0;right:0;left:0;height:3px;background:var(--'+x[0]+')"></div><div class="st-ic" style="background:rgba(56,189,248,.1)">'+x[1]+'</div><div class="st-lb">'+x[2]+'</div><div class="st-vl" style="color:var(--'+x[0]+')">'+x[3]+'</div></div>'}).join('');document.getElementById('hrDepts').innerHTML=depts.filter(function(d){return df==='all'||d.n===df}).map(function(d){var de=f.filter(function(e){return e.dept===d.n});return '<div class="dept-card open"><div class="dept-hd" onclick="this.parentElement.classList.toggle(\'open\')"><div class="dept-ic">'+d.i+'</div><div><div class="dept-nm">'+d.n+'</div><div class="dept-cnt">'+de.length+' موظف</div></div><div class="dept-tgl">▼</div></div><div class="dept-bd">'+(de.length?de.map(function(e){return '<div class="emp-row"><div class="emp-av">👤</div><div class="emp-info"><div class="emp-nm">'+e.name+'</div><div class="emp-rl">'+e.role+'</div></div><span class="badge '+(e.avail==='available'?'green':'orange')+'">'+(e.avail==='available'?'✓ متاح':'⬤ مشغول ('+e.tasks+')')+'</span></div>'}).join(''):'<div style="padding:16px;text-align:center;color:var(--t3)">لا يوجد</div>')+'</div></div>'}).join('');document.getElementById('hrBody').innerHTML=f.length?f.map(function(e){return '<tr><td><b>'+e.name+'</b></td><td><span class="badge '+(e.avail==='available'?'green':'orange')+'">'+(e.avail==='available'?'✓ متاح':'⬤ مشغول')+'</span></td><td style="color:var(--t3);font-size:13px">'+e.email+'</td><td><span class="badge gray">'+e.role+'</span></td><td><span class="badge blue">'+e.dept+'</span></td></tr>'}).join(''):'<tr><td colspan="5" style="text-align:center;padding:30px;color:var(--t3)">لا يوجد</td></tr>'}
 
-// === EVALUATIONS ===
+// ===================== EVALUATIONS =====================
 function starsHTML(v){var h='<span class="stars">';for(var i=1;i<=10;i++)h+='<span class="star'+(i<=v?' on':'')+'">★</span>';return h+'</span> <b style="font-family:Cairo;font-size:15px;margin-right:4px">'+v+'</b>'}
 function scCls(v){return v>=8?'green':v>=6?'blue':v>=4?'orange':'red'}
 function renderEvals(){var s=(document.getElementById('evalSearch')?document.getElementById('evalSearch').value:'').toLowerCase();var f=evals.filter(function(e){return !s||e.emp.includes(s)||e.task.includes(s)});document.getElementById('evalBody').innerHTML=f.length?f.map(function(e){var t=e.s+e.q+e.p;return '<tr><td style="color:var(--blue);font-weight:700">'+e.emp+'</td><td><b>'+e.task+'</b></td><td>'+starsHTML(e.s)+'</td><td>'+starsHTML(e.q)+'</td><td>'+starsHTML(e.p)+'</td><td style="text-align:center"><span class="badge '+scCls(Math.round(t/3))+'"><b style="font-family:Cairo;font-size:15px">'+t+'</b>/30</span></td><td><button class="act-btn" style="color:var(--orange)" onclick="editEval('+e.id+')">✏️</button> <button class="act-btn del" onclick="delEval('+e.id+')">🗑️</button></td></tr>'}).join(''):'<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--t3)">لا توجد تقييمات</td></tr>'}
@@ -423,25 +987,22 @@ async function addEval(){var res=await dbInsert('pms_evaluations',{employee:docu
 async function delEval(id){if(!confirm('حذف؟'))return;await dbDelete('pms_evaluations',id);evals=evals.filter(function(x){return x.id!==id});renderEvals();toast('تم الحذف')}
 function editEval(id){var e=evals.find(function(x){return x.id===id});if(!e)return;showModal('evalModal');document.getElementById('evS').value=e.s;document.getElementById('evQ').value=e.q;document.getElementById('evP').value=e.p;setTimeout(function(){document.getElementById('evEmp').value=e.emp;document.getElementById('evTask').value=e.task},50);document.querySelector('#evalModal .f-submit').onclick=async function(){await dbUpdate('pms_evaluations',id,{employee:document.getElementById('evEmp').value,task:document.getElementById('evTask').value,speed:+document.getElementById('evS').value,quality:+document.getElementById('evQ').value,commitment:+document.getElementById('evP').value});e.emp=document.getElementById('evEmp').value;e.task=document.getElementById('evTask').value;e.s=+document.getElementById('evS').value;e.q=+document.getElementById('evQ').value;e.p=+document.getElementById('evP').value;hideModal('evalModal');document.querySelector('#evalModal .f-submit').onclick=function(){addEval()};renderEvals();toast('تم التحديث ✅')}}
 
-// === USERS ===
-function renderUsers(){var s=(document.getElementById('userSearch')?document.getElementById('userSearch').value:'').toLowerCase();var rf=document.getElementById('userRoleF')?document.getElementById('userRoleF').value:'all';var f=users.filter(function(u){if(s&&!u.n.includes(s)&&!u.u.includes(s))return false;return rf==='all'||u.r===rf});
-document.getElementById('userStats').innerHTML=[['blue','👥','المستخدمين',users.length],['purple','🛡️','مدير عام',users.filter(function(u){return u.r==='super_admin'}).length],['green','📁','مدير مشروع',users.filter(function(u){return u.r==='project_manager'}).length],['orange','👤','موظفين',users.filter(function(u){return u.r!=='super_admin'&&u.r!=='project_manager'}).length]].map(function(x){return '<div class="st-card"><div style="position:absolute;top:0;right:0;left:0;height:3px;background:var(--'+x[0]+')"></div><div class="st-ic" style="background:rgba(56,189,248,.1)">'+x[1]+'</div><div class="st-lb">'+x[2]+'</div><div class="st-vl" style="color:var(--'+x[0]+')">'+x[3]+'</div></div>'}).join('');
-document.getElementById('userBody').innerHTML=f.length?f.map(function(u){var rc=u.r==='super_admin'?'purple':u.r==='project_manager'?'blue':'gray';return '<tr><td><div style="display:flex;align-items:center;gap:10px"><div style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--cyan));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px">'+u.n[0]+'</div><div><b style="font-size:14px">'+u.n+'</b><div style="font-size:11px;color:var(--t3)">@'+u.u+'</div></div></div></td><td style="font-size:13px;color:var(--t3)">'+(u.email||'-')+'</td><td><span class="badge '+rc+'">'+RL[u.r]+'</span></td><td><span class="badge blue">'+(u.dept||'-')+'</span></td><td style="font-size:13px">'+(u.jobTitle||'-')+'</td><td><button class="act-btn" style="color:var(--blue)" onclick="viewProfile('+u.id+')">👤</button> <button class="act-btn" style="color:var(--orange)" onclick="editUser('+u.id+')">✏️</button>'+(u.u!=='admin'?' <button class="act-btn del" onclick="delUser('+u.id+')">🗑️</button>':'')+'</td></tr>'}).join(''):''}
-
+// ===================== USERS =====================
+function renderUsers(){var s=(document.getElementById('userSearch')?document.getElementById('userSearch').value:'').toLowerCase();var rf=document.getElementById('userRoleF')?document.getElementById('userRoleF').value:'all';var f=users.filter(function(u){if(s&&!u.n.includes(s)&&!u.u.includes(s))return false;return rf==='all'||u.r===rf});document.getElementById('userStats').innerHTML=[['blue','👥','المستخدمين',users.length],['purple','🛡️','مدير عام',users.filter(function(u){return u.r==='super_admin'}).length],['green','📁','مدير مشروع',users.filter(function(u){return u.r==='project_manager'}).length],['orange','👤','موظفين',users.filter(function(u){return u.r!=='super_admin'&&u.r!=='project_manager'}).length]].map(function(x){return '<div class="st-card"><div style="position:absolute;top:0;right:0;left:0;height:3px;background:var(--'+x[0]+')"></div><div class="st-ic" style="background:rgba(56,189,248,.1)">'+x[1]+'</div><div class="st-lb">'+x[2]+'</div><div class="st-vl" style="color:var(--'+x[0]+')">'+x[3]+'</div></div>'}).join('');document.getElementById('userBody').innerHTML=f.length?f.map(function(u){var rc=u.r==='super_admin'?'purple':u.r==='project_manager'?'blue':'gray';return '<tr><td><div style="display:flex;align-items:center;gap:10px"><div style="width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--cyan));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:16px">'+u.n[0]+'</div><div><b style="font-size:14px">'+u.n+'</b><div style="font-size:11px;color:var(--t3)">@'+u.u+'</div></div></div></td><td style="font-size:13px;color:var(--t3)">'+(u.email||'-')+'</td><td><span class="badge '+rc+'">'+RL[u.r]+'</span></td><td><span class="badge blue">'+(u.dept||'-')+'</span></td><td style="font-size:13px">'+(u.jobTitle||'-')+'</td><td><button class="act-btn" style="color:var(--blue)" onclick="viewProfile('+u.id+')">👤</button> <button class="act-btn" style="color:var(--orange)" onclick="editUser('+u.id+')">✏️</button>'+(u.u!=='admin'?' <button class="act-btn del" onclick="delUser('+u.id+')">🗑️</button>':'')+'</td></tr>'}).join(''):''}
 async function saveUser(){var n=document.getElementById('uName').value.trim();var uu=document.getElementById('uUser').value.trim();var pp=document.getElementById('uPass').value;if(!n||!uu){toast('أدخل الاسم واسم المستخدم');return}var editId=document.getElementById('uEditId').value;if(editId){var u=users.find(function(x){return x.id===parseInt(editId)});if(u){var upd={fullname:n,username:uu,email:document.getElementById('uEmail').value,role:document.getElementById('uRole').value,dept:document.getElementById('uDept').value,job_title:document.getElementById('uJobTitle').value,phone:document.getElementById('uPhone').value};if(pp)upd.password=pp;await dbUpdate('pms_users',parseInt(editId),upd);u.n=n;u.u=uu;if(pp)u.p=pp;u.email=upd.email;u.r=upd.role;u.dept=upd.dept;u.jobTitle=upd.job_title;u.phone=upd.phone}}else{if(!pp){toast('أدخل كلمة المرور');return}if(users.find(function(x){return x.u===uu})){toast('اسم المستخدم موجود');return}var res=await dbInsert('pms_users',{username:uu,password:pp,fullname:n,role:document.getElementById('uRole').value,email:document.getElementById('uEmail').value,dept:document.getElementById('uDept').value,job_title:document.getElementById('uJobTitle').value,phone:document.getElementById('uPhone').value});if(res&&res[0])users.push({id:res[0].id,u:uu,p:pp,n:n,r:res[0].role,email:res[0].email,dept:res[0].dept,jobTitle:res[0].job_title,phone:res[0].phone})}hideModal('userModal');clearUF();renderUI();toast(editId?'تم التحديث ✅':'تمت الإضافة ✅')}
 function editUser(id){var u=users.find(function(x){return x.id===id});if(!u)return;document.getElementById('userModalTitle').textContent='تعديل';document.getElementById('uEditId').value=id;document.getElementById('uName').value=u.n;document.getElementById('uUser').value=u.u;document.getElementById('uPass').value='';document.getElementById('uEmail').value=u.email||'';document.getElementById('uRole').value=u.r;document.getElementById('uDept').value=u.dept||'تقنية المعلومات';document.getElementById('uJobTitle').value=u.jobTitle||'';document.getElementById('uPhone').value=u.phone||'';showModal('userModal')}
 async function delUser(id){var u=users.find(function(x){return x.id===id});if(!u||u.u==='admin')return;if(!confirm('حذف '+u.n+'؟'))return;await dbDelete('pms_users',id);users=users.filter(function(x){return x.id!==id});renderUI();toast('تم الحذف')}
 function clearUF(){document.getElementById('userModalTitle').textContent='إضافة مستخدم';document.getElementById('uEditId').value='';['uName','uUser','uPass','uEmail','uJobTitle','uPhone'].forEach(function(x){document.getElementById(x).value=''})}
 function viewProfile(id){var u=users.find(function(x){return x.id===id});if(!u)return;var tc=tasks.filter(function(t){return t.assign===u.n}).length;var cc=tasks.filter(function(t){return t.assign===u.n&&t.st==='completed'}).length;var el=evals.filter(function(e){return e.emp===u.n});var avg=el.length?el.reduce(function(s,e){return s+e.s+e.q+e.p},0)/(el.length*3):0;var rc=u.r==='super_admin'?'purple':u.r==='project_manager'?'blue':'gray';document.getElementById('profileContent').innerHTML='<div style="text-align:center;padding:20px 0"><div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--cyan));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:32px;margin:0 auto 12px;font-family:Cairo">'+u.n[0]+'</div><div style="font-size:22px;font-weight:800;font-family:Cairo">'+u.n+'</div><div style="color:var(--t3);font-size:14px">@'+u.u+'</div><span class="badge '+rc+'" style="margin-top:8px">'+RL[u.r]+'</span></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0">'+ [['البريد',u.email||'-'],['الهاتف',u.phone||'-'],['القسم',u.dept||'-'],['الوظيفة',u.jobTitle||'-']].map(function(x){return '<div style="background:var(--bg2);border:1px solid var(--bdr);border-radius:10px;padding:14px;text-align:center"><div style="font-size:12px;color:var(--t3)">'+x[0]+'</div><div style="font-weight:700;font-size:14px;margin-top:4px">'+x[1]+'</div></div>'}).join('') +'</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:12px 0"><div style="background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.12);border-radius:10px;padding:16px;text-align:center"><div style="font-size:24px;font-weight:900;font-family:Cairo;color:var(--blue)">'+tc+'</div><div style="font-size:12px;color:var(--t3)">المهام</div></div><div style="background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.12);border-radius:10px;padding:16px;text-align:center"><div style="font-size:24px;font-weight:900;font-family:Cairo;color:var(--green)">'+cc+'</div><div style="font-size:12px;color:var(--t3)">مكتملة</div></div><div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.12);border-radius:10px;padding:16px;text-align:center"><div style="font-size:24px;font-weight:900;font-family:Cairo;color:var(--orange)">'+avg.toFixed(1)+'</div><div style="font-size:12px;color:var(--t3)">التقييم</div></div></div>';showModal('profileModal')}
 
-// === MODALS ===
+// ===================== MODALS =====================
 function showModal(id){if(id==='userModal'&&!document.getElementById('uEditId').value)clearUF();var eo=users.map(function(u){return '<option>'+u.n+'</option>'}).join('');var po=projects.map(function(p){return '<option>'+p.name+'</option>'}).join('');var to=tasks.map(function(t){return '<option>'+t.name+'</option>'}).join('');if(document.getElementById('pMgr'))document.getElementById('pMgr').innerHTML=eo||'<option>أضف مستخدمين</option>';if(document.getElementById('tProj'))document.getElementById('tProj').innerHTML=po||'<option>أضف مشاريع</option>';if(document.getElementById('tAssign'))document.getElementById('tAssign').innerHTML=eo||'<option>أضف مستخدمين</option>';if(document.getElementById('evEmp'))document.getElementById('evEmp').innerHTML=eo||'<option>أضف مستخدمين</option>';if(document.getElementById('evTask'))document.getElementById('evTask').innerHTML=to||'<option>أضف مهام</option>';document.getElementById(id).classList.add('show')}
 function hideModal(id){document.getElementById(id).classList.remove('show')}
 
-// === AI ANALYSIS ===
-function showAI(type){showModal('aiModal');document.getElementById('aiContent').innerHTML='<div style="text-align:center;padding:30px"><div class="spinner"></div><p style="color:var(--t2)">جاري التحليل...</p></div>';setTimeout(function(){var h='';var emps=getAllEmps();if(type==='dash'){var avgP=projects.length?(projects.reduce(function(s,p){return s+p.prog},0)/projects.length).toFixed(1):0;var hiRisk=projects.filter(function(p){return p.risk==='عالي'}).length;h='<div class="ai-card"><h4>📊 ملخص الأداء</h4><p>'+projects.length+' مشاريع، '+tasks.length+' مهمة. متوسط التقدم '+avgP+'%.</p></div><div class="ai-card"><h4>⚠️ تنبيهات</h4><p>'+(hiRisk?hiRisk+' مشاريع بمخاطر عالية.':'لا توجد مخاطر عالية.')+' '+tasks.filter(function(t){return t.st==='pending'}).length+' مهام معلقة.</p></div><div class="ai-card"><h4>✅ توصيات</h4><p>'+(!projects.length?'ابدأ بإضافة مشاريع ومهام':'1. متابعة المشاريع المتأخرة<br>2. توزيع المهام على المتاحين<br>3. مراجعة أسبوعية')+'</p></div>'}else if(type==='hr'){var avail=emps.filter(function(e){return e.avail==='available'}).length;h='<div class="ai-card"><h4>📊 ملخص الموارد</h4><p>'+emps.length+' موظفين. '+avail+' متاحون و'+(emps.length-avail)+' مشغولون.</p></div><div class="ai-card"><h4>✅ توصيات</h4><p>'+(emps.length<3?'فريق صغير - يُنصح بتعيين إضافي.':'1. استثمار المتاحين<br>2. توزيع العبء<br>3. خطة تدريب')+'</p></div>'}else{var st={};evals.forEach(function(e){if(!st[e.emp])st[e.emp]={c:0,s:0};st[e.emp].c++;st[e.emp].s+=e.s+e.q+e.p});var b='',ba=0;Object.entries(st).forEach(function(x){var a=x[1].s/(x[1].c*3);if(a>ba){ba=a;b=x[0]}});h=evals.length?'<div class="ai-card"><h4>🏆 أفضل أداء</h4><p><b>'+b+'</b> بمتوسط '+ba.toFixed(1)+'/10</p></div><div class="ai-card"><h4>📈 توصيات</h4><p>1. ربط التقييمات بالمكافآت<br>2. مراجعة شهرية<br>3. تطوير نقاط الضعف</p></div>':'<div class="ai-card"><h4>لا توجد تقييمات</h4><p>أضف تقييمات أولاً.</p></div>'}document.getElementById('aiContent').innerHTML=h},1500)}
+// ===================== AI =====================
+function showAI(type){showModal('aiModal');document.getElementById('aiContent').innerHTML='<div style="text-align:center;padding:30px"><div class="spinner"></div><p style="color:var(--t2)">جاري التحليل...</p></div>';setTimeout(function(){var h='';var emps=getAllEmps();if(type==='dash'||type==='reports'){var avgP=projects.length?(projects.reduce(function(s,p){return s+p.prog},0)/projects.length).toFixed(1):0;var hiRisk=projects.filter(function(p){return p.risk==='عالي'}).length;var overdue=tasks.filter(function(t){return t.due&&new Date(t.due)<new Date()&&t.st!=='completed'}).length;var rate=tasks.length?Math.round(tasks.filter(function(t){return t.st==='completed'}).length/tasks.length*100):0;h='<div class="ai-card"><h4>📊 ملخص الأداء الشامل</h4><p>'+projects.length+' مشاريع نشطة. متوسط التقدم <b>'+avgP+'%</b>. معدل إنجاز المهام <b>'+rate+'%</b>.</p></div><div class="ai-card"><h4>⚠️ تنبيهات هامة</h4><p>'+(hiRisk?'<b style="color:var(--red)">'+hiRisk+'</b> مشاريع بمخاطر عالية تحتاج متابعة فورية.<br>':'')+(overdue?'<b style="color:var(--orange)">'+overdue+'</b> مهام متأخرة عن موعدها.<br>':'')+(!hiRisk&&!overdue?'✅ لا توجد تنبيهات عاجلة حالياً.':'')+'</p></div><div class="ai-card"><h4>✅ توصيات استراتيجية</h4><p>'+(!projects.length?'ابدأ بإضافة مشاريع ومهام للحصول على تحليل دقيق.':'1. مراجعة أسبوعية للمشاريع عالية المخاطر<br>2. توزيع المهام على الموظفين المتاحين<br>3. تتبع معدلات الإنجاز لتحديد نقاط التحسين<br>4. تحديث ميزانيات المشاريع بشكل منتظم')+'</p></div><div class="ai-card"><h4>📈 مؤشرات الأداء الرئيسية</h4><p>الموظفون المتاحون: <b style="color:var(--green)">'+emps.filter(function(e){return e.avail==='available'}).length+'</b> من أصل '+emps.length+'<br>المشاريع قيد التنفيذ: <b style="color:var(--blue)">'+projects.filter(function(p){return p.status==='قيد التنفيذ'}).length+'</b></p></div>'}else if(type==='hr'){var avail=emps.filter(function(e){return e.avail==='available'}).length;h='<div class="ai-card"><h4>📊 ملخص الموارد البشرية</h4><p>'+emps.length+' موظف. <b style="color:var(--green)">'+avail+'</b> متاحون و<b style="color:var(--orange)">'+(emps.length-avail)+'</b> مشغولون حالياً.</p></div><div class="ai-card"><h4>✅ توصيات</h4><p>'+(emps.length<3?'فريق صغير - يُنصح بتعيين موظفين إضافيين.':'1. استثمار الموظفين المتاحين في المشاريع الجديدة<br>2. إعادة توزيع العبء بين الأقسام<br>3. وضع خطة تدريب وتطوير<br>4. مراجعة أحمال العمل شهرياً')+'</p></div>'}else{var st={};evals.forEach(function(e){if(!st[e.emp])st[e.emp]={c:0,s:0};st[e.emp].c++;st[e.emp].s+=e.s+e.q+e.p});var b='',ba=0;Object.entries(st).forEach(function(x){var a=x[1].s/(x[1].c*3);if(a>ba){ba=a;b=x[0]}});h=evals.length?'<div class="ai-card"><h4>🏆 أفضل أداء</h4><p><b style="color:var(--gold)">'+b+'</b> بمتوسط تقييم <b>'+ba.toFixed(1)+'</b> من 10</p></div><div class="ai-card"><h4>📈 توصيات</h4><p>1. ربط التقييمات بنظام المكافآت<br>2. مراجعة شهرية منتظمة<br>3. تطوير المهارات الضعيفة<br>4. مشاركة أفضل الممارسات</p></div>':'<div class="ai-card"><h4>لا توجد تقييمات كافية</h4><p>أضف تقييمات للحصول على تحليل دقيق.</p></div>'}document.getElementById('aiContent').innerHTML=h},1200)}
 
-function toast(m){var t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(function(){t.remove()},2500)}
+function toast(m,c){var t=document.createElement('div');t.className='toast';t.textContent=m;if(c)t.style.background=c;document.body.appendChild(t);setTimeout(function(){t.remove()},2500)}
 </script>
 </body>
 </html>
